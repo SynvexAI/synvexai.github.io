@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Страница не найдена | SynvexAI</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
+    
+    <style>
+        .error-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+        }
+
+        .error-code {
+            font-size: clamp(8rem, 25vw, 20rem);
+            font-weight: var(--font-weight-black);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1;
+            position: relative;
+            overflow: hidden;
+            animation: errorGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes errorGlow {
+            0% { 
+                text-shadow: 
+                    0 0 20px rgba(255,255,255,0.1),
+                    0 0 40px rgba(255,255,255,0.1);
+            }
+            100% { 
+                text-shadow: 
+                    0 0 30px rgba(255,255,255,0.2),
+                    0 0 60px rgba(255,255,255,0.2);
+            }
+        }
+
+        .error-code::before {
+            content: "404";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, var(--accent-color) 50%, transparent 70%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .error-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-color);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .error-description {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: var(--secondary-text-color);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .error-actions .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border: 2px solid var(--accent-color);
+            background: var(--accent-color);
+            color: var(--button-text-color);
+            text-decoration: none;
+            font-weight: var(--font-weight-semibold);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .error-actions .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .error-actions .btn-secondary {
+            background: transparent;
+            color: var(--text-color);
+            border-color: var(--border-color);
+        }
+
+        .error-actions .btn-secondary:hover {
+            background: var(--subtle-bg-color);
+            border-color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .error-actions .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-background"></div>
+
+    <header id="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">SynvexAI</a>
+            </div>
+            <div class="right-side">
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="nav-link"><span>Главная</span></a></li>
+                        <li><a href="index.html#about" class="nav-link"><span>О нас</span></a></li>
+                        <li><a href="index.html#news-showcase" class="nav-link"><span>Новости</span></a></li>
+                    </ul>
+                </nav>
+                <div class="theme-switcher">
+                    <button id="theme-toggle-button" aria-label="Переключить тему">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top: 120px; min-height: calc(100vh - 120px); display: flex; align-items: center; justify-content: center;">
+        <div class="error-container">
+            <div class="error-code" data-aos="zoom-in" data-aos-duration="1000">404</div>
+            
+            <h1 class="error-title" data-aos="fade-up" data-aos-delay="300">
+                Страница не найдена
+            </h1>
+            
+            <p class="error-description" data-aos="fade-up" data-aos-delay="500">
+                Похоже, что страница, которую вы ищете, была перемещена, удалена или никогда не существовала. 
+                Но не волнуйтесь — даже ИИ иногда теряется в лабиринте интернета!
+            </p>
+            
+            <div class="error-actions" data-aos="fade-up" data-aos-delay="700">
+                <a href="index.html" class="btn">
+                    <i class="fas fa-home"></i>
+                    Вернуться на главную
+                </a>
+                <button class="btn btn-secondary" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    Назад
+                </button>
+            </div>
+            
+            <div class="error-actions" data-aos="fade-up" data-aos-delay="900">
+                <a href="SynvexAI/news/" class="btn btn-secondary">
+                    <i class="fas fa-newspaper"></i>
+                    Посмотреть новости
+                </a>
+                <a href="https://chat.remind.ai/" class="btn btn-secondary">
+                    <i class="fas fa-robot"></i>
+                    Попробовать ReMind
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer id="site-footer">
+        <div class="container footer-content">
+            <div class="footer-social-links">
+                <a href="https://x.com/SynvexAI" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.youtube.com/@SynvexAI" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://linkedin.com/company/synvexai" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/SynvexAI" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://instagram.com/SynvexAI" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="http://tiktok.com/@synvexai" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://discord.gg/pxdFazEPSf" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+            </div>
+            <div class="footer-copyright">
+                <span>SynvexAI <span id="copyright-years"></span></span>
+                <a href="" class="manage-cookies-link">Управление cookie</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" title="Наверх">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true
+        });
+    </script>
+</body>
+</html>
