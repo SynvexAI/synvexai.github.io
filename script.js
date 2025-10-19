@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, 100);
     }
-    
+
     AOS.init({
         duration: 700,
         once: true,
         offset: 50,
         easing: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
     });
-    
+
     const scrollLinks = document.querySelectorAll('a.scroll-link');
     scrollLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
             scrollWrapper.scrollLeft += evt.deltaY > 0 ? 100 : -100;
         }, { passive: false });
     }
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
