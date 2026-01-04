@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
@@ -15,42 +18,46 @@
     <title>SynvexAI</title>
     <link rel="icon" href="icon.ico" type="image/x-icon">
     <meta name="title" content="SynvexAI" />
-    <meta name="description" content="Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека." />
+    <meta name="description"
+        content="Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека." />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="SynvexAI" />
-    <meta property="og:description" content="Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека." />
+    <meta property="og:description"
+        content="Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека." />
     <meta property="og:image" content="news/banner.png" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content="SynvexAI" />
-    <meta property="twitter:description" content="Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека." />
+    <meta property="twitter:description"
+        content="Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека." />
     <meta property="twitter:image" content="news/banner.png" />
 </head>
+
 <body>
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
     <header id="main-header">
-      <div class="container">
-        <div class="logo">
-          <a href="#">SynvexAI</a>
+        <div class="container">
+            <div class="logo">
+                <a href="#">SynvexAI</a>
+            </div>
+            <div class="right-side">
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="active nav-link"><span>Главная</span></a></li>
+                        <li><a href="#about" class="nav-link scroll-link"><span>О нас</span></a></li>
+                        <li><a href="#news-showcase" class="nav-link scroll-link"><span>Новости</span></a></li>
+                    </ul>
+                </nav>
+                <div class="theme-switcher">
+                    <button id="theme-toggle-button" aria-label="Переключить тему">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="right-side">
-          <nav>
-            <ul>
-              <li><a href="index.html" class="active nav-link"><span>Главная</span></a></li>
-              <li><a href="#about" class="nav-link scroll-link"><span>О нас</span></a></li>
-              <li><a href="#news-showcase" class="nav-link scroll-link"><span>Новости</span></a></li>
-            </ul>
-          </nav>
-          <div class="theme-switcher">
-            <button id="theme-toggle-button" aria-label="Переключить тему">
-              <i class="fas fa-moon"></i>
-            </button>
-          </div>
-        </div>
-      </div>
     </header>
 
 
@@ -58,45 +65,65 @@
         <section class="hero">
             <div class="container hero-content">
                 <h1 class="hero-title"></h1>
-                </div>
+                <form class="hero-prompt-form" action="https://pashaddd.alwaysdata.net" method="get">
+                    <div class="hero-input-wrap">
+                        <input type="text" name="prompt" placeholder="Спроси что угодно." aria-label="Запрос к ReMind"
+                            required>
+                        <button type="submit">Спросить</button>
+                    </div>
+                    <!-- <div class="hero-input-hint">Вопрос откроется в ReMind</div> -->
+                </form>
+            </div>
         </section>
 
+
         <section id="about" class="content-section about-teaser">
-        <div class="container" data-aos="fade-up">
-            <h2 class="section-title-center">Наша цель — простой и безопасный ИИ</h2>
+            <div class="container" data-aos="fade-up">
+                <h2 class="section-title-center">Наша цель</h2>
 
-            <p data-aos="fade-up" data-aos-delay="100">
-            Мы в <strong>SynvexAI</strong> верим, что искусственный интеллект должен быть простым, понятным и безопасным. Наша главная цель — создать ИИ, который будет открытым и доступным для каждого.
-            </p>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    Мы в <strong>SynvexAI</strong> верим, что искусственный интеллект должен быть простым, понятным и
+                    безопасным. Наша главная цель — создать ИИ, который будет открытым и доступным для каждого.
+                </p>
 
-            <p data-aos="fade-up" data-aos-delay="150">
-            Мы хотим, чтобы у вас был инструмент, который просто работает. Без сложных настроек, без барьеров и без "головной боли". Появилась идея? Вы просто заходите и делаете.
-            </p>
+                <p data-aos="fade-up" data-aos-delay="150">
+                    Мы хотим, чтобы у вас был инструмент, который просто работает. Без сложных настроек, без барьеров и
+                    без "головной боли". Появилась идея? Вы просто заходите и делаете.
+                </p>
 
-            <p data-aos="fade-up" data-aos-delay="200">
-            ИИ — это не замена человеку. <strong>Это помощник.</strong> Он должен быть полезным, говорить правду и оставаться дружелюбным. Мы видим его как партнёра, который помогает вам думать, учиться и творить, а не делает всё за вас.
-            </p>
+                <p data-aos="fade-up" data-aos-delay="200">
+                    ИИ — это не замена человеку. <strong>Это помощник.</strong> Он должен быть полезным, говорить правду
+                    и оставаться дружелюбным. Мы видим его как партнёра, который помогает вам думать, учиться и творить,
+                    а не делает всё за вас.
+                </p>
 
-            <p data-aos="fade-up" data-aos-delay="250">
-            Ключ ко всему — <strong>открытость и прозрачность</strong>. Мы хотим, чтобы вы всегда понимали, как работает система. Чтобы вы могли видеть "ход мыслей" ИИ и не сомневались, что он ничего не "недоговорил". Прозрачность — это основа доверия.
-            </p>
+                <p data-aos="fade-up" data-aos-delay="250">
+                    Ключ ко всему — <strong>открытость и прозрачность</strong>. Мы хотим, чтобы вы всегда понимали, как
+                    работает система. Чтобы вы могли видеть "ход мыслей" ИИ и не сомневались, что он ничего не
+                    "недоговорил". Прозрачность — это основа доверия.
+                </p>
 
-            <p data-aos="fade-up" data-aos-delay="300">
-            Хватит бояться "сломать" технологию или часами подбирать "идеальный" запрос. Вам не нужно держать в голове тысячу разных продуктов. Вы должны просто пользоваться, быть и узнавать новое. <strong>SynvexAI</strong> — это про то, чтобы дать вам эту возможность.
-            </p>
+                <p data-aos="fade-up" data-aos-delay="300">
+                    Хватит бояться "сломать" технологию или часами подбирать "идеальный" запрос. Вам не нужно держать в
+                    голове тысячу разных продуктов. Вы должны просто пользоваться, быть и узнавать новое.
+                    <strong>SynvexAI</strong> — это про то, чтобы дать вам эту возможность.
+                </p>
 
-            <p data-aos="fade-up" data-aos-delay="350">
-            Мы не ограничиваем себя. SynvexAI — это площадка для экспериментов. Мы хотим пробовать всё, проверять идеи и не бояться нового. Это позволяет нам создавать гибкие инструменты и даже давать ИИ разные "личности", чтобы вы могли выбрать ту, с которой вам комфортнее всего общаться.
-            </p>
+                <p data-aos="fade-up" data-aos-delay="350">
+                    Мы не ограничиваем себя. SynvexAI — это площадка для экспериментов. Мы хотим пробовать всё,
+                    проверять идеи и не бояться нового. Это позволяет нам создавать гибкие инструменты и даже давать ИИ
+                    разные "личности", чтобы вы могли выбрать ту, с которой вам комфортнее всего общаться.
+                </p>
 
-            <a href="about-page.html" class="text-link" data-aos="fade-up" data-aos-delay="400"> Узнать больше о нашей философии </a>
-        </div>
+                <a href="about-page.html" class="text-link" data-aos="fade-up" data-aos-delay="400"> Узнать больше о
+                    нашей философии </a>
+            </div>
         </section>
         <section id="news-showcase" class="content-section news-showcase-section-v2">
             <div class="container">
                 <div class="section-header" data-aos="fade-right">
-                     <h2 class="section-title">Главное</h2>
-                     <a href="SynvexAI\news\" class="view-all-link">
+                    <h2 class="section-title">Главное</h2>
+                    <a href="news\" class="view-all-link">
                         Все новости <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -109,16 +136,19 @@
                             </div>
                             <div class="news-wow-content">
                                 <h3>ReMind</h3>
-                                <p class="news-wow-excerpt">ReMind — ваш персональный ИИ-ассистент, созданный для предоставления глубоких инсайтов и осмысленной поддержки. Идеи, задачи или большие цели — ReMind помогает двигаться вперёд.</p>
+                                <p class="news-wow-excerpt">ReMind — ваш персональный ИИ-ассистент, созданный для
+                                    предоставления глубоких инсайтов и осмысленной поддержки.</p>
                                 <div class="news-meta">
                                     <span class="news-date">21 мая 2025</span>
-                                    <span class="read-more-chip">Читать далее <i class="fas fa-long-arrow-alt-right"></i></span>
+                                    <span class="read-more-chip">Читать далее <i
+                                            class="fas fa-long-arrow-alt-right"></i></span>
                                 </div>
                             </div>
                         </a>
                     </article>
 
-                    <article class="news-wow-card secondary-story type-1" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
+                    <article class="news-wow-card secondary-story type-1" data-aos="fade-left" data-aos-delay="200"
+                        data-aos-duration="800">
                         <a href="model\GDint\" class="news-wow-link">
                             <div class="news-wow-image-wrapper small-img">
                                 <div class="placeholder-bg-pattern pattern-1"></div>
@@ -133,12 +163,16 @@
                         </a>
                     </article>
 
-                    <article class="news-wow-card secondary-story type-3" data-aos="fade-left" data-aos-delay="350" data-aos-duration="800">
+                    <article class="news-wow-card secondary-story type-3" data-aos="fade-left" data-aos-delay="350"
+                        data-aos-duration="800">
                         <a href="model\chessai" class="news-wow-link">
                             <div class="news-wow-content text-only">
                                 <span class="news-wow-category">Объявление</span>
                                 <h4>ChessAI</h4>
-                                <p class="news-wow-excerpt short">ChessAI — это инструмент для анализа шахматных партий, использующий движок Stockfish и графический интерфейс на Python. Он позволяет загружать партии в формате PGN, анализировать ходы и получать рекомендации по улучшению игры.</p>
+                                <p class="news-wow-excerpt short">ChessAI — это инструмент для анализа шахматных партий,
+                                    использующий движок Stockfish и графический интерфейс на Python. Он позволяет
+                                    загружать партии в формате PGN, анализировать ходы и получать рекомендации по
+                                    улучшению игры.</p>
                                 <div class="news-meta">
                                     <span class="news-read-time">3 минуты чтения</span>
                                 </div>
@@ -158,7 +192,8 @@
                     <article class="news-card" data-aos="fade-up" data-aos-delay="100">
                         <a href="https://synvexai.github.io/MindForge/" class="news-card-link-wrapper">
                             <div class="news-card-image-wrapper">
-                                <div class="news-card-image-placeholder secondary-image" style="background-image: url('news/MindForge.png');"></div>
+                                <div class="news-card-image-placeholder secondary-image"
+                                    style="background-image: url('news/MindForge.png');"></div>
                             </div>
                             <div class="news-card-content">
                                 <h4>MindForge</h4>
@@ -173,7 +208,8 @@
                     <article class="news-card" data-aos="fade-up" data-aos-delay="200">
                         <a href="model\chessai" class="news-card-link-wrapper">
                             <div class="news-card-image-wrapper">
-                                <div class="news-card-image-placeholder secondary-image" style="background-image: url('news/chess-ai-1.png');"></div>
+                                <div class="news-card-image-placeholder secondary-image"
+                                    style="background-image: url('news/chess-ai-1.png');"></div>
                             </div>
                             <div class="news-card-content">
                                 <h4>ChessAI</h4>
@@ -188,7 +224,8 @@
                     <article class="news-card" data-aos="fade-up" data-aos-delay="300">
                         <a class="news-card-link-wrapper">
                             <div class="news-card-image-wrapper">
-                                <div class="news-card-image-placeholder secondary-image" style="background-image: url('news/TableSupportInReMind.jpg');"></div>
+                                <div class="news-card-image-placeholder secondary-image"
+                                    style="background-image: url('news/TableSupportInReMind.jpg');"></div>
                             </div>
                             <div class="news-card-content">
                                 <h4>Поддержка таблиц в ReMind</h4>
@@ -202,7 +239,8 @@
                     <article class="news-card" data-aos="fade-up" data-aos-delay="100">
                         <a href="model\GDint" class="news-card-link-wrapper">
                             <div class="news-card-image-wrapper">
-                                <div class="news-card-image-placeholder secondary-image" style="background-image: url('news/WebsiteCreatedForGDint.jpg');"></div>
+                                <div class="news-card-image-placeholder secondary-image"
+                                    style="background-image: url('news/WebsiteCreatedForGDint.jpg');"></div>
                             </div>
                             <div class="news-card-content">
                                 <h4>GDint</h4>
@@ -217,7 +255,9 @@
                     <article class="news-card" data-aos="fade-up" data-aos-delay="200">
                         <a class="news-card-link-wrapper">
                             <div class="news-card-image-wrapper">
-                                <div class="news-card-image-placeholder secondary-image" style="background-image: url('news/ReMindСanNowThinkOutLoudAndDisplayLinks2.jpg');"></div>
+                                <div class="news-card-image-placeholder secondary-image"
+                                    style="background-image: url('news/ReMindСanNowThinkOutLoudAndDisplayLinks2.jpg');">
+                                </div>
                             </div>
                             <div class="news-card-content">
                                 <h4>Ссылки и картинки в ReMind</h4>
@@ -231,7 +271,8 @@
                     <article class="news-card" data-aos="fade-up" data-aos-delay="300">
                         <a href="#" class="news-card-link-wrapper">
                             <div class="news-card-image-wrapper">
-                                <div class="news-card-image-placeholder secondary-image" style="background-image: url('news/news1.png');"></div>
+                                <div class="news-card-image-placeholder secondary-image"
+                                    style="background-image: url('news/news1.png');"></div>
                             </div>
                             <div class="news-card-content">
                                 <h4>Мы создали собственный сайт</h4>
@@ -253,12 +294,16 @@
         <div class="container footer-content">
             <div class="footer-social-links">
                 <a href="https://x.com/SynvexAI" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.youtube.com/@SynvexAI" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://linkedin.com/company/synvexai" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@SynvexAI" target="_blank" title="YouTube"><i
+                        class="fab fa-youtube"></i></a>
+                <a href="https://linkedin.com/company/synvexai" target="_blank" title="LinkedIn"><i
+                        class="fab fa-linkedin-in"></i></a>
                 <a href="https://github.com/SynvexAI" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://instagram.com/SynvexAI" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://instagram.com/SynvexAI" target="_blank" title="Instagram"><i
+                        class="fab fa-instagram"></i></a>
                 <a href="http://tiktok.com/@synvexai" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://discord.gg/pxdFazEPSf" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://discord.gg/pxdFazEPSf" target="_blank" title="Discord"><i
+                        class="fab fa-discord"></i></a>
                 <a href="https://t.me/SynvexAI" target="_blank" title="Discord"><i class="fab fa-telegram"></i></a>
             </div>
             <div class="footer-copyright">
@@ -272,4 +317,5 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 </body>
+
 </html>

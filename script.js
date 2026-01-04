@@ -1,20 +1,23 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
         const text = "Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека.";
         heroTitle.innerHTML = '';
         let charIndex = 0;
 
-        text.split(' ').forEach(word => {
+        text.split(' ').forEach((word, wordIndex) => {
             const wordWrapper = document.createElement('span');
             wordWrapper.className = 'word-wrapper';
             wordWrapper.style.display = 'inline-block';
+            if (wordIndex === 0) {
+                wordWrapper.classList.add('accent');
+            }
 
             word.split('').forEach(char => {
                 const span = document.createElement('span');
                 span.classList.add('char');
                 span.textContent = char;
-                span.style.transitionDelay = `${charIndex * 0.02}s`;
+                span.style.setProperty('--char-delay', `${charIndex * 0.035}s`);
                 wordWrapper.appendChild(span);
                 charIndex++;
             });
@@ -22,14 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
             heroTitle.appendChild(wordWrapper);
             heroTitle.appendChild(document.createTextNode(' '));
         });
-
-        setTimeout(() => {
-            heroTitle.querySelectorAll('.char').forEach(charSpan => {
-                charSpan.style.opacity = '1';
-                charSpan.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
-            });
-        }, 100);
     }
+
 
     AOS.init({
         duration: 700,
@@ -40,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const scrollLinks = document.querySelectorAll('a.scroll-link');
     scrollLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
@@ -133,10 +130,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
         });
     }, {
         threshold: 0.1
