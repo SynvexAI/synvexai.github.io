@@ -1,118 +1,149 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Страница не найдена | SynvexAI</title>
-    <link rel="icon" href="icon.ico" type="image/x-icon">
-
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="script.js"></script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — Страница не найдена</title>
+  <link rel="icon" type="image/svg+xml" href="/public/assets/icons/branding/logo.svg">
+  <link rel="icon" href="/public/icons/branding/logo-dark.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/public/icons/branding/logo-light.svg" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/icons/branding/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/icons/branding/logo-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/icons/branding/logo-16.png">
+  <link rel="shortcut icon" href="/public/icons/branding/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
+
 <body>
-    <div class="grid-background"></div>
+  <header id="main-header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">SynvexAI</a>
+      </div>
+      <div class="right-side">
+        <nav>
+          <ul>
+            <li><a href="index.html" class="active nav-link"><span>Главная</span></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-    <header id="main-header">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">SynvexAI</a>
-            </div>
-            <div class="right-side">
-                <nav>
-                    <ul>
-                        <li><a href="index.html" class="nav-link"><span>Главная</span></a></li>
-                        <li><a href="index.html#about" class="nav-link"><span>О нас</span></a></li>
-                        <li><a href="index.html#news-showcase" class="nav-link"><span>Новости</span></a></li>
-                    </ul>
-                </nav>
-                <div class="theme-switcher">
-                    <button id="theme-toggle-button" aria-label="Переключить тему">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
-            </div>
+  <main>
+    <section class="hero error-hero">
+      <div class="container hero-content error-hero-content">
+        <div class="error-card">
+          <div class="error-kicker">Ошибка маршрута</div>
+          <h1 class="error-code">404</h1>
+          <h2 class="section-title">Страница не найдена</h2>
+          <p>
+            Похоже, ссылка изменилась, была удалена или написана с ошибкой. Вернитесь на главную и
+            продолжите навигацию.
+          </p>
+          <div class="error-actions">
+            <a class="cta-button" href="/">Вернуться на главную</a>
+            <a class="text-link" href="index.html">Открыть главную страницу</a>
+          </div>
+          <div class="hero-input-hint">Проверьте адрес или вернитесь назад.</div>
         </div>
-    </header>
+      </div>
+    </section>
+  </main>
 
-    <main style="padding-top: 120px; min-height: calc(100vh - 120px); display: flex; align-items: center; justify-content: center;">
-        <div class="error-container">
-            <div class="error-code" data-aos="zoom-in" data-aos-duration="1000">404</div>
+  <style>
+    .error-hero {
+      padding-top: 120px;
+    }
 
-            <h1 class="error-title" data-aos="fade-up" data-aos-delay="300">
-                Страница не найдена
-            </h1>
+    .error-hero-content {
+      text-align: left;
+      display: flex;
+      justify-content: center;
+    }
 
-            <p class="error-description" data-aos="fade-up" data-aos-delay="500">
-                Похоже, что страница, которую вы ищете, была перемещена, удалена или никогда не существовала.
-                Но не волнуйтесь — даже ИИ иногда теряется в лабиринте интернета!
-            </p>
+    .error-card {
+      width: min(860px, 100%);
+      background: var(--card-bg-color);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 20px;
+      padding: clamp(28px, 5vw, 52px);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
 
-            <div class="error-actions" data-aos="fade-up" data-aos-delay="700">
-                <a href="./" class="btn">
-                    <i class="fas fa-home"></i>
-                    Вернуться на главную
-                </a>
-                <button class="btn btn-secondary" onclick="goBack()">
-                    <i class="fas fa-arrow-left"></i>
-                    Назад
-                </button>
-            </div>
+    .error-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(var(--color-accent-raw), 0.15);
+      color: var(--text-color);
+      font-weight: var(--font-weight-semibold);
+      font-size: 0.9rem;
+    }
 
-            <!-- <div class="error-actions" data-aos="fade-up" data-aos-delay="900">
-                <a href="SynvexAI/news/" class="btn btn-secondary">
-                    <i class="fas fa-newspaper"></i>
-                    Посмотреть новости
-                </a>
-                <a href="https://chat.remind.ai/" class="btn btn-secondary">
-                    <i class="fas fa-robot"></i>
-                    Попробовать ReMind
-                </a>
-            </div> -->
-        </div>
-    </main>
+    .error-code {
+      font-family: var(--font-family-display);
+      font-size: clamp(4rem, 12vw, 9rem);
+      line-height: 1;
+      letter-spacing: 0.08em;
+      margin: 18px 0 10px;
+      color: rgba(var(--color-white-raw), 0.16);
+      text-shadow: 0 0 24px rgba(var(--color-accent-raw), 0.25);
+    }
 
-    <footer id="site-footer">
-        <div class="container footer-content">
-            <div class="footer-social-links">
-                <a href="https://x.com/SynvexAI" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://www.youtube.com/@SynvexAI" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://linkedin.com/company/synvexai" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/SynvexAI" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://instagram.com/SynvexAI" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="http://tiktok.com/@synvexai" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://discord.gg/pxdFazEPSf" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-            </div>
-            <div class="footer-copyright">
-                <span>SynvexAI <span id="copyright-years"></span></span>
-                <a href="" class="manage-cookies-link">Управление cookie</a>
-            </div>
-        </div>
-    </footer>
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+      align-items: center;
+    }
 
-    <button id="back-to-top" title="Наверх">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    .error-hero .hero-input-hint {
+      margin-top: 18px;
+    }
 
-    <script>
-        function goBack() {
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.location.href = 'index.html';
-            }
-        }
+    @media (max-width: 768px) {
+      .error-hero-content {
+        text-align: center;
+      }
 
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out-cubic',
-            once: true
-        });
-    </script>
+      .error-actions {
+        justify-content: center;
+      }
+    }
+  </style>
+
+  <footer id="site-footer">
+    <div class="container footer-content">
+      <div class="footer-social-links">
+        <a href="https://x.com/SynvexAI" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/@SynvexAI" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://linkedin.com/company/synvexai" target="_blank" title="LinkedIn"><i
+            class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/SynvexAI" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/SynvexAI" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="http://tiktok.com/@synvexai" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://discord.gg/pxdFazEPSf" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+        <a href="https://t.me/SynvexAI" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+      </div>
+      <div class="footer-copyright">
+        <span>SynvexAI</span>
+        <a href="" class="manage-cookies-link">Управление cookie</a>
+      </div>
+    </div>
+  </footer>
 </body>
+
 </html>
