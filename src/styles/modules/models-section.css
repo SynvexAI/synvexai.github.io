@@ -55,7 +55,6 @@
   width: 32px;
   height: 32px;
   color: var(--color-accent);
-  /* Ensure SVG color is applied if using currentColor */
   fill: currentColor;
 }
 
@@ -148,7 +147,6 @@
   color: var(--color-accent);
 }
 
-/* Original touch: glow gradient on hover */
 .model-card::before {
   content: "";
   position: absolute;
@@ -171,7 +169,6 @@
   opacity: 1;
 }
 
-/* Icons specific colors if needed */
 .icon-chess {
   color: #8ab4f8;
 }

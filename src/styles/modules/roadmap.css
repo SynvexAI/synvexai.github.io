@@ -1,0 +1,206 @@
+.roadmap-section {
+  padding: 80px 0;
+  background-color: var(--color-bg-main); /* Same as models section */
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.roadmap-header {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.roadmap-horizontal-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 40px; /* Space for scrollbar or shadow */
+  /* Hide scrollbar for cleaner look but keep functionality */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-medium) transparent;
+  cursor: grab;
+}
+
+.roadmap-horizontal-scroll:active {
+  cursor: grabbing;
+}
+
+.roadmap-track {
+  display: flex;
+  gap: 0;
+  min-width: max-content;
+  padding: 0 20px;
+}
+
+.roadmap-step {
+  width: 320px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- The Line & Dot System --- */
+.roadmap-marker-container {
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Connecting Line */
+.roadmap-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--color-border-medium);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+/* Connect items */
+.roadmap-step:last-child .roadmap-line {
+  background: linear-gradient(
+    to right,
+    var(--color-border-medium) 0%,
+    transparent 100%
+  );
+  right: 50%; /* Stop halfway for the last item */
+}
+
+.roadmap-step:first-child .roadmap-line {
+  left: 50%; /* Start halfway for the first item */
+}
+
+/* Colored lines for active/completed */
+.roadmap-step.completed .roadmap-line {
+  background-color: var(--color-success);
+}
+
+.roadmap-step.active .roadmap-line {
+  background: linear-gradient(
+    to right,
+    var(--color-success) 0%,
+    var(--color-border-medium) 100%
+  );
+}
+
+/* The Dot */
+.roadmap-dot {
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-bg-main);
+  border: 2px solid var(--color-border-medium);
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  margin: 0 auto; /* Center the dot in the 320px width */
+  transition: all 0.3s ease;
+}
+
+.roadmap-step.completed .roadmap-dot {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+  box-shadow: 0 0 8px rgba(var(--color-success-raw), 0.4);
+}
+
+.roadmap-step.active .roadmap-dot {
+  background-color: var(--color-bg-main);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 12px rgba(var(--color-accent-raw), 0.5);
+  transform: scale(1.2);
+}
+
+/* --- Card Content --- */
+.roadmap-card {
+  margin: 0 12px;
+  padding: 24px;
+  background-color: transparent; /* Minimalist */
+  border: 1px solid transparent;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hover Effect - Match Model Cards */
+.roadmap-card:hover {
+  background-color: var(--color-bg-surface-alt);
+  border-color: var(--color-border-medium);
+  transform: translateY(-4px);
+}
+
+.roadmap-phase {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-tertiary);
+  margin-bottom: 4px;
+}
+
+.roadmap-step.active .roadmap-phase {
+  color: var(--color-accent);
+}
+
+.roadmap-date {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.roadmap-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+}
+
+.roadmap-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+}
+
+.roadmap-list li {
+  margin-bottom: 6px;
+  padding-left: 14px;
+  position: relative;
+}
+
+.roadmap-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-border-medium);
+}
+
+.roadmap-step.completed .roadmap-list li::before {
+  content: "✓";
+  color: var(--color-success);
+}
+
+/* Scrollbar Styling for Webkit */
+.roadmap-horizontal-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.roadmap-horizontal-scroll::-webkit-scrollbar-track {
+  background: var(--color-bg-surface);
+  border-radius: 3px;
+}
+
+.roadmap-horizontal-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--color-border-medium);
+  border-radius: 3px;
+}
+
+.roadmap-horizontal-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-border-strong);
+}

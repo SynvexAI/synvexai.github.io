@@ -183,7 +183,6 @@ nav ul {
   box-shadow: 0 35px 70px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Footer --- */
 #site-footer {
   position: relative;
   background: var(--bg-color);
@@ -266,6 +265,22 @@ nav ul {
   justify-content: center;
   color: var(--secondary-text-color);
   font-size: 0.9em;
+}
+
+.footer-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.footer-cta-text {
+  font-size: 1.2em;
+  font-weight: var(--font-weight-semi-bold);
+  color: var(--text-color);
+  margin: 0;
 }
 
 @media (max-width: 768px) {

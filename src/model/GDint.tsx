@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import SiteFooter from "../SiteFooter";
 import MainHeader from "../components/MainHeader";
 import type { MainHeaderNavLink } from "../components/MainHeader";
@@ -61,14 +59,7 @@ export default function GDintPage() {
   const [codeById, setCodeById] = useState<Record<string, string>>({});
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      offset: 50,
-      easing: "cubic-bezier(0.25, 0.8, 0.25, 1)",
-    });
-  }, []);
+
 
   useEffect(() => {
     loadPrismAssets();
@@ -143,7 +134,7 @@ export default function GDintPage() {
 
       <main>
         <section className="hero content-section">
-          <div className="container" data-aos="fade-in">
+          <div className="container">
             <h1 className="section-title">GDint: Обучение ИИ для Geometry Dash</h1>
             <p className="subtitle">
               GDint - это проект на Python, который обучает агента с искусственным интеллектом автономно проходить
@@ -167,7 +158,7 @@ export default function GDintPage() {
                 <i className="fab fa-github"></i> Код на GitHub
               </a>
             </div>
-            <div className="video-container" data-aos="zoom-in-up">
+            <div className="video-container">
               <iframe
                 src="https://www.youtube.com/embed/SU5lVPNFXbE"
                 title="YouTube video player"
@@ -180,36 +171,36 @@ export default function GDintPage() {
 
         <section id="features" className="content-section">
           <div className="container">
-            <h2 className="section-title" data-aos="fade-up">
+            <h2 className="section-title">
               Основные возможности
             </h2>
             <ul className="feature-list">
-              <li className="feature-item" data-aos="fade-up" data-aos-delay="100">
+              <li className="feature-item">
                 <i className="fas fa-robot"></i>
                 <h3>Автономное обучение</h3>
                 <p>Агент использует алгоритм DQN для изучения игрового процесса через многократные попытки.</p>
               </li>
-              <li className="feature-item" data-aos="fade-up" data-aos-delay="200">
+              <li className="feature-item">
                 <i className="fas fa-camera"></i>
                 <h3>Захват экрана</h3>
                 <p>Автоматическое обнаружение и захват окна игры Geometry Dash для анализа.</p>
               </li>
-              <li className="feature-item" data-aos="fade-up" data-aos-delay="300">
+              <li className="feature-item">
                 <i className="fas fa-image"></i>
                 <h3>Обработка изображений</h3>
                 <p>Преобразование кадров в формат, подходящий для нейронной сети (разрешение, цвет/монохром).</p>
               </li>
-              <li className="feature-item" data-aos="fade-up" data-aos-delay="100">
+              <li className="feature-item">
                 <i className="fas fa-mouse-pointer"></i>
                 <h3>Имитация ввода</h3>
                 <p>Эмуляция кликов мыши для выполнения прыжков в игре на основе решений ИИ.</p>
               </li>
-              <li className="feature-item" data-aos="fade-up" data-aos-delay="200">
+              <li className="feature-item">
                 <i className="fas fa-chart-line"></i>
                 <h3>Графический интерфейс</h3>
                 <p>GUI для мониторинга статистики обучения (Q-значения, потери, награды) и управления процессом.</p>
               </li>
-              <li className="feature-item" data-aos="fade-up" data-aos-delay="300">
+              <li className="feature-item">
                 <i className="fas fa-cogs"></i>
                 <h3>Гибкая конфигурация</h3>
                 <p>Простая настройка всех ключевых параметров через отдельный конфигурационный файл.</p>
@@ -220,10 +211,10 @@ export default function GDintPage() {
 
         <section id="setup" className="content-section">
           <div className="container">
-            <h2 className="section-title" data-aos="fade-up">
+            <h2 className="section-title">
               Установка и запуск
             </h2>
-            <div data-aos="fade-up">
+            <div>
               <h3>Шаг 1: Требования</h3>
               <ul className="setup-steps">
                 <li>
@@ -280,10 +271,10 @@ pip install torch torchvision torchaudio opencv-python numpy mss pynput pygetwin
 
         <section id="code" className="content-section">
           <div className="container">
-            <h2 className="section-title" data-aos="fade-up">
+            <h2 className="section-title">
               Исходный код
             </h2>
-            <div className="code-container" data-aos="fade-up">
+            <div className="code-container">
               <div className="code-tabs">
                 {CODE_FILES.map((file) => (
                   <button

@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import NewsPage from "./news";
 import SiteFooter from "./SiteFooter";
+import Roadmap from "./components/Roadmap";
 import GDintPage from "./model/GDint";
 import ChessAiPage from "./model/ChessAi";
 import MainHeader from "./components/MainHeader";
@@ -48,11 +49,15 @@ function HeroTitle() {
 
 function ModelsShowcase() {
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
-    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+
+    requestAnimationFrame(() => {
+        card.style.setProperty("--mouse-x", `${x}px`);
+        card.style.setProperty("--mouse-y", `${y}px`);
+    });
   };
 
   const models = [
@@ -83,7 +88,7 @@ function ModelsShowcase() {
       colorClass: "icon-vision",
       badge: "Скоро",
       links: [{ label: "Try in Playground", url: "#" }],
-      footerLink: "See capabilities",
+      footerLink: "Learn more",
       footerLinkUrl: "#",
     },
     {
@@ -93,7 +98,7 @@ function ModelsShowcase() {
       colorClass: "icon-vision",
       badge: "Скоро",
       links: [{ label: "Try in Playground", url: "#" }],
-      footerLink: "See capabilities",
+      footerLink: "Learn more",
       footerLinkUrl: "#",
     }
   ];
@@ -236,30 +241,28 @@ function HomePage() {
     resize();
 
     const minDim = () => Math.min(width, height);
-    // Shifted to the right side (0.75 of width) per user request/image
     const cx = () => width * 0.75;
     const cy = () => height * 0.5;
 
     type Dot = {
       baseAngle: number;
-      dist: number; // 0..1 normalized distance
+      dist: number;
       size: number;
       speed: number;
       offset: number;
     };
 
     const dotCount = Math.round(
-      Math.max(500, Math.min(1000, (width * height) / 1500))
+      Math.max(800, Math.min(2000, (width * height) / 1000))
     );
     const goldenAngle = Math.PI * (3 - Math.sqrt(5));
 
     const dots: Dot[] = Array.from({ length: dotCount }, (_, i) => {
-      // Phyllotaxis setup
       const distIdx = i / (dotCount - 1);
       const dist = Math.sqrt(distIdx);
       const angle = i * goldenAngle;
 
-      const size = 1.0 + Math.random() * 2.0;
+      const size = 2.0 + Math.random() * 3.0;
       const speed = 0.8 + Math.random() * 0.6;
       const offset = Math.random() * Math.PI * 2;
 
@@ -286,8 +289,13 @@ function HomePage() {
     }
 
     const start = performance.now();
+    let isVisible = true;
 
     function frame(now: number) {
+      if (!isVisible && rafId) {
+         return;
+      }
+
       const t = (now - start) / 1000;
       ctx2d.clearRect(0, 0, width, height);
 
@@ -307,22 +315,16 @@ function HomePage() {
 
       ctx2d.globalCompositeOperation = isLight ? "multiply" : "screen";
 
-      // Max radius roughly covers half the screen width or a bit more
       const maxR = md * 1.5;
 
       for (let i = 0; i < dots.length; i++) {
         const dot = dots[i];
 
-        // Wave logic: Pulse moves outward
-        // dot.dist is 0..1
-        // Make the wave frequency related to radial distance
         const r = dot.dist * maxR;
 
-        // Wave phase: moves over time
         const wavePhase = t * 1.2 - dot.dist * 8.0 + dot.offset * 0.1;
         const wave = Math.sin(wavePhase); // -1..1
 
-        // Parallax
         const depth = 0.2 + 0.8 * dot.dist;
         const px = pointerTx * md * 0.05 * depth;
         const py = pointerTy * md * 0.05 * depth;
@@ -330,21 +332,18 @@ function HomePage() {
         const x = centerX + Math.cos(dot.baseAngle) * r + px;
         const y = centerY + Math.sin(dot.baseAngle) * r + py;
 
-        // Pulsating logic
-        // Size pulses
         const s = dot.size * (0.6 + 0.4 * wave);
 
-        // Alpha pulses
-        const alphaWave = Math.sin(wavePhase + Math.PI * 0.2); // slight offset
-        const aBase = isLight ? 0.5 : 0.6;
-        const a = aBase * (0.4 + 0.6 * alphaWave);
+        const alphaWave = Math.sin(wavePhase + Math.PI * 0.2);
+        const aBase = isLight ? 0.6 : 0.9;
+        const a = aBase * (0.6 + 0.4 * alphaWave);
 
         if (a <= 0.01 || s <= 0.01) continue;
 
-        // Color based on distance + minor time shift
         const cT = (dot.dist * 0.6 - t * 0.05) % 1;
         const [R, G, B] = paletteAt(cT);
 
+        // Optimization: Use fillRect for small dots, arc is slow
         ctx2d.fillStyle = `rgba(${R}, ${G}, ${B}, ${a})`;
         ctx2d.beginPath();
         ctx2d.arc(x, y, s, 0, Math.PI * 2);
@@ -354,11 +353,29 @@ function HomePage() {
       rafId = requestAnimationFrame(frame);
     }
 
-    rafId = requestAnimationFrame(frame);
+    // Optimization: Stop animation when off-screen
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible) {
+        if (!rafId) frame(performance.now());
+      } else {
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = 0;
+        }
+      }
+    });
+    observer.observe(canvasEl);
+
+    // Initial start handled by observer or fallthrough if needed,
+    // but observer callback runs asynchronously.
+    // Let's rely on observer to start it, or force one frame.
+    // Actually, IntersectionObserver callback usually runs once on mount.
 
     window.addEventListener("resize", resize, { passive: true });
     return () => {
       window.removeEventListener("resize", resize);
+      observer.disconnect();
       if (!prefersReduced && heroEl) {
         heroEl.removeEventListener("pointermove", onPointerMove);
         heroEl.removeEventListener("pointerleave", onPointerLeave);
@@ -392,6 +409,7 @@ function HomePage() {
 
   const navLinks: MainHeaderNavLink[] = [
     { label: "Главная", href: "/", isActive: true },
+    { label: "Roadmap", href: "#roadmap", onClick: () => scrollToId("roadmap") },
     { label: "О нас", href: "#about", onClick: () => scrollToId("about") },
     { label: "Новости", href: "#news-showcase", onClick: () => scrollToId("news-showcase") },
   ];
@@ -594,6 +612,19 @@ function HomePage() {
                   </a>
                 </article>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <Roadmap />
+
+        <section id="contact-cta" className="content-section" style={{ textAlign: "center" }}>
+          <div className="container" data-aos="fade-up">
+            <h2 className="section-title-center">Есть идеи, предложения или желание помочь?</h2>
+            <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center" }}>
+              <a href="mailto:synvexai@gmail.com" className="cta-button">
+                Написать нам
+              </a>
             </div>
           </div>
         </section>

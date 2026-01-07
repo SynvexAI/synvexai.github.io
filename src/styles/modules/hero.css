@@ -1,19 +1,15 @@
 .hero {
-  /* Account for fixed header (70px) so content is visually centered in viewport */
   min-height: calc(100vh - 70px);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  /* keep some breathing room below, remove large top padding that offsets centering */
   padding-top: 20px;
   padding-bottom: 60px;
   background: var(--bg-color);
 }
 
-/* DeepMind-like hero background: layered glows + subtle grid + vignette.
-   Implemented via pseudo-elements to avoid affecting layout/content. */
 .hero::before,
 .hero::after {
   content: "";
@@ -35,7 +31,7 @@
 }
 
 [data-theme="light"] .hero-particles {
-  opacity: 0.55;
+  opacity: 0.8;
   mix-blend-mode: multiply;
 }
 

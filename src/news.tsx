@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import SiteFooter from "./SiteFooter";
 import MainHeader from "./components/MainHeader";
 import type { MainHeaderNavLink } from "./components/MainHeader";
@@ -11,14 +9,7 @@ export default function NewsPage() {
   const [showTop, setShowTop] = useState(false);
   useAutoTheme();
 
-  useEffect(() => {
-    AOS.init({
-      duration: 700,
-      once: true,
-      offset: 50,
-      easing: "cubic-bezier(0.25, 0.8, 0.25, 1)",
-    });
-  }, []);
+
 
   useEffect(() => {
     document.title = "Новости SynvexAI";
@@ -47,12 +38,12 @@ export default function NewsPage() {
       <main>
         <section id="news-showcase" className="content-section news-showcase-section-v2">
           <div className="container">
-            <div className="section-header" data-aos="fade-right">
+            <div className="section-header">
               <h2 className="section-title">Новости</h2>
             </div>
 
             <div className="news-sticky-layout">
-              <div className="news-sticky-featured" data-aos="fade-up">
+              <div className="news-sticky-featured">
                 <div className="featured-news-wrapper">
                   <article className="featured-news-card">
                     <a
@@ -80,7 +71,7 @@ export default function NewsPage() {
                 </div>
               </div>
 
-              <div className="news-sticky-list" data-aos="fade-up" data-aos-delay="150">
+              <div className="news-sticky-list">
                 <article className="news-list-item">
                   <a href="/model/GDint/" className="news-list-link">
                     <div className="news-list-body">
