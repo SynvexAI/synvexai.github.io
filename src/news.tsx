@@ -2,15 +2,14 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SiteFooter from "./SiteFooter";
+import MainHeader from "./components/MainHeader";
+import type { MainHeaderNavLink } from "./components/MainHeader";
+import { useAutoTheme } from "./hooks/useAutoTheme";
 
 export default function NewsPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showTop, setShowTop] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">(() => {
-    const saved = localStorage.getItem("theme") as "dark" | "light" | null;
-    if (saved === "dark" || saved === "light") return saved;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  });
+  useAutoTheme();
 
   useEffect(() => {
     AOS.init({
@@ -20,10 +19,6 @@ export default function NewsPage() {
       easing: "cubic-bezier(0.25, 0.8, 0.25, 1)",
     });
   }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   useEffect(() => {
     document.title = "Новости SynvexAI";
@@ -40,43 +35,14 @@ export default function NewsPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  function toggleTheme() {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    localStorage.setItem("theme", next);
-  }
+  const navLinks: MainHeaderNavLink[] = [{ label: "Главная", href: "/" }];
 
   return (
     <>
-      <header id="main-header" className={isScrolled ? "scrolled" : ""}>
-        <div className="container">
-          <div className="logo">
-            <a href="/">SynvexAI</a>
-          </div>
-
-          <div className="right-side">
-            <nav>
-              <ul>
-                <li>
-                  <a href="/" className="nav-link">
-                    <span>Главная</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="theme-switcher">
-              <button
-                id="theme-toggle-button"
-                aria-label="Переключить тему"
-                onClick={toggleTheme}
-              >
-                <i className={`fas ${theme === "dark" ? "fa-sun" : "fa-moon"}`}></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <MainHeader
+        isScrolled={isScrolled}
+        navLinks={navLinks}
+      />
 
       <main>
         <section id="news-showcase" className="content-section news-showcase-section-v2">

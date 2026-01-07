@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SiteFooter from "../SiteFooter";
+import MainHeader from "../components/MainHeader";
+import type { MainHeaderNavLink } from "../components/MainHeader";
+import { useAutoTheme } from "../hooks/useAutoTheme";
 
 const CODE_FILES = [
   {
@@ -46,7 +49,7 @@ function loadPrismAssets() {
 export default function ChessAiPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showTop, setShowTop] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  useAutoTheme();
   const [activeTab, setActiveTab] = useState(CODE_FILES[0].id);
   const [codeById, setCodeById] = useState<Record<string, string>>({});
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -62,15 +65,6 @@ export default function ChessAiPage() {
 
   useEffect(() => {
     loadPrismAssets();
-  }, []);
-
-  useEffect(() => {
-    const saved =
-      (localStorage.getItem("theme") as "dark" | "light" | null) ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-
-    setTheme(saved);
-    document.documentElement.setAttribute("data-theme", saved);
   }, []);
 
   useEffect(() => {
@@ -119,13 +113,6 @@ export default function ChessAiPage() {
     }
   }, [codeById, activeTab]);
 
-  function toggleTheme() {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-  }
-
   async function copyCode(tabId: string) {
     const text = codeById[tabId] ?? "";
     try {
@@ -137,29 +124,11 @@ export default function ChessAiPage() {
     }
   }
 
+  const navLinks: MainHeaderNavLink[] = [{ label: "Главная", href: "/" }];
+
   return (
     <>
-      <header id="main-header" className={isScrolled ? "scrolled" : ""}>
-        <div className="container">
-          <div className="logo">
-            <a href="/">SynvexAI</a>
-          </div>
-          <div className="right-side">
-            <nav>
-              <ul></ul>
-            </nav>
-            <div className="theme-switcher">
-              <button
-                id="theme-toggle-button"
-                aria-label="Переключить тему"
-                onClick={toggleTheme}
-              >
-                <i className={`fas ${theme === "dark" ? "fa-sun" : "fa-moon"}`}></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <MainHeader isScrolled={isScrolled} navLinks={navLinks} />
 
       <main>
         <section className="hero content-section">

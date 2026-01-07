@@ -5,6 +5,9 @@ import NewsPage from "./news";
 import SiteFooter from "./SiteFooter";
 import GDintPage from "./model/GDint";
 import ChessAiPage from "./model/ChessAi";
+import MainHeader from "./components/MainHeader";
+import type { MainHeaderNavLink } from "./components/MainHeader";
+import { useAutoTheme } from "./hooks/useAutoTheme";
 
 const HERO_TEXT =
   "Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека.";
@@ -149,11 +152,7 @@ function ModelsShowcase() {
 function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showTop, setShowTop] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">(() => {
-    const saved = localStorage.getItem("theme") as "dark" | "light" | null;
-    if (saved === "dark" || saved === "light") return saved;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  });
+  const theme = useAutoTheme();
 
   const heroParticlesRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -165,10 +164,6 @@ function HomePage() {
       easing: "cubic-bezier(0.25, 0.8, 0.25, 1)",
     });
   }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   useEffect(() => {
     const canvas = heroParticlesRef.current;
@@ -395,71 +390,18 @@ function HomePage() {
     window.scrollTo({ top, behavior: "smooth" });
   }
 
-  function toggleTheme() {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    localStorage.setItem("theme", next);
-  }
+  const navLinks: MainHeaderNavLink[] = [
+    { label: "Главная", href: "/", isActive: true },
+    { label: "О нас", href: "#about", onClick: () => scrollToId("about") },
+    { label: "Новости", href: "#news-showcase", onClick: () => scrollToId("news-showcase") },
+  ];
 
   return (
     <>
       <div className="cursor"></div>
       <div className="cursor-follower"></div>
 
-      <header id="main-header" className={isScrolled ? "scrolled" : ""}>
-        <div className="container">
-          <div className="logo">
-            <a href="/">SynvexAI</a>
-          </div>
-
-          <div className="right-side">
-            <nav>
-              <ul>
-                <li>
-                  <a href="/" className="active nav-link">
-                    <span>Главная</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#about"
-                    className="nav-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToId("about");
-                    }}
-                  >
-                    <span>О нас</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#news-showcase"
-                    className="nav-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToId("news-showcase");
-                    }}
-                  >
-                    <span>Новости</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="theme-switcher">
-              <button
-                id="theme-toggle-button"
-                aria-label="Переключить тему"
-                onClick={toggleTheme}
-              >
-                {/* у тебя: если dark => sun, если light => moon */}
-                <i className={`fas ${theme === "dark" ? "fa-sun" : "fa-moon"}`}></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <MainHeader isScrolled={isScrolled} navLinks={navLinks} showPrompt />
 
       <main>
         <section className="hero">
@@ -469,22 +411,6 @@ function HomePage() {
               <HeroTitle />
             </h1>
 
-            <form
-              className="hero-prompt-form"
-              action="https://pashaddd.alwaysdata.net"
-              method="get"
-            >
-              <div className="hero-input-wrap">
-                <input
-                  type="text"
-                  name="prompt"
-                  placeholder="Спроси что угодно."
-                  aria-label="Запрос к ReMind"
-                  required
-                />
-                <button type="submit">Спросить</button>
-              </div>
-            </form>
           </div>
         </section>
 
