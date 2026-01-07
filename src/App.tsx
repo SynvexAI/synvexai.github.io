@@ -43,6 +43,108 @@ function HeroTitle() {
   return <>{nodes}</>;
 }
 
+function ModelsShowcase() {
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+  };
+
+  const models = [
+    {
+      title: "Mind",
+      desc: "Наша самая мощная модель искусственного интеллекта для генерации текста и решения сложных задач.",
+      iconSrc: "/icons/model/mind.svg",
+      colorClass: "icon-text",
+      badge: "Разр.",
+      links: [{ label: "Try in Playground", url: "#" }],
+      footerLink: "Learn more",
+      footerLinkUrl: "#",
+    },
+    {
+      title: "Think",
+      desc: "Модель искусственного интеллекта, оптимизированная для логических рассуждений, анализа и пошагового решения задач.",
+      iconSrc: "/icons/model/think.svg",
+      colorClass: "icon-text",
+      badge: "Разр.",
+      links: [{ label: "Try in Playground", url: "#" }],
+      footerLink: "Learn more",
+      footerLinkUrl: "#",
+    },
+    {
+      title: "Mind Image",
+      desc: "Создавайте и редактируйте фотореалистичные изображения с помощью нашей генеративной модели.",
+      iconSrc: "/icons/model/image.svg",
+      colorClass: "icon-vision",
+      badge: "Скоро",
+      links: [{ label: "Try in Playground", url: "#" }],
+      footerLink: "See capabilities",
+      footerLinkUrl: "#",
+    },
+    {
+      title: "Lume",
+      desc: "Создавайте связные видеосцены по текстовому описанию с сохранением движения, стиля и визуальной логики.",
+      iconSrc: "/icons/model/image.svg",
+      colorClass: "icon-vision",
+      badge: "Скоро",
+      links: [{ label: "Try in Playground", url: "#" }],
+      footerLink: "See capabilities",
+      footerLinkUrl: "#",
+    }
+  ];
+
+  return (
+    <section className="models-section">
+      <div className="container" data-aos="fade-up">
+        <div className="models-grid">
+          {models.map((m, i) => (
+            <a
+              href={m.links[0]?.url || "#"}
+              key={i}
+              className="model-card"
+              onMouseMove={handleMouseMove}
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
+            >
+              <div className="model-icon-box">
+                <img
+                  src={m.iconSrc}
+                  alt={m.title}
+                  className={`model-icon ${m.colorClass}`}
+                />
+                {m.badge && <span className="model-badge">{m.badge}</span>}
+              </div>
+              <h3 className="model-title">{m.title}</h3>
+              <p className="model-desc">{m.desc}</p>
+
+              <div className="model-actions">
+                <span className="model-action-title">Try it in</span>
+                <div className="model-links">
+                  {m.links.map((l, li) => (
+                    <span key={li} className="model-link">
+                      {l.label} <i className="fas fa-chevron-right"></i>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <a
+                href={m.footerLinkUrl}
+                className="model-footer-link"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {m.footerLink}
+              </a>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -83,7 +185,8 @@ function HomePage() {
     let height = 0;
     let dpr = 1;
 
-    const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+    const prefersReduced =
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
     const isLight = document.documentElement.getAttribute("data-theme") === "light";
 
     const heroEl = canvasEl.closest(".hero") as HTMLElement | null;
@@ -93,44 +196,22 @@ function HomePage() {
     let pointerTx = 0;
     let pointerTy = 0;
 
-    function clamp01(x: number) {
-      return Math.max(0, Math.min(1, x));
-    }
-
-    function smoothstep(edge0: number, edge1: number, x: number) {
-      const t = clamp01((x - edge0) / (edge1 - edge0));
-      return t * t * (3 - 2 * t);
-    }
-
     function lerp(a: number, b: number, t: number) {
       return a + (b - a) * t;
     }
 
-    function cssVarRgbRaw(name: string, fallback: [number, number, number]) {
-      const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-      const parts = raw.split(",").map((v) => Number(v.trim()));
-      if (parts.length === 3 && parts.every((n) => Number.isFinite(n))) {
-        return [parts[0], parts[1], parts[2]] as [number, number, number];
-      }
-      return fallback;
-    }
-
-    const accent = cssVarRgbRaw("--color-accent-raw", [236, 236, 240]);
-
     const palette: Array<[number, number, number]> = isLight
       ? [
-          [34, 78, 255],
-          [126, 62, 255],
-          [245, 55, 85],
-          [255, 140, 0],
-          [34, 165, 92],
+          [60, 100, 200],
+          [100, 150, 255],
+          [200, 220, 255],
         ]
       : [
-          [52, 120, 255],
-          [140, 92, 255],
-          [255, 70, 105],
-          [255, 170, 40],
-          [48, 210, 130],
+          [20, 40, 100],
+          [50, 90, 200],
+          [100, 160, 255],
+          [180, 210, 255],
+          [0, 50, 150],
         ];
 
     function paletteAt(t: number) {
@@ -160,36 +241,34 @@ function HomePage() {
     resize();
 
     const minDim = () => Math.min(width, height);
-    const cx = () => width * 0.56;
-    const cy = () => height * 0.46;
+    // Shifted to the right side (0.75 of width) per user request/image
+    const cx = () => width * 0.75;
+    const cy = () => height * 0.5;
 
     type Dot = {
       baseAngle: number;
-      baseRadius: number;
+      dist: number; // 0..1 normalized distance
       size: number;
-      phase: number;
-      drift: number;
-      colorT: number;
-      alpha: number;
+      speed: number;
+      offset: number;
     };
 
-    const dotCount = Math.round(Math.max(260, Math.min(720, (width * height) / 2800)));
+    const dotCount = Math.round(
+      Math.max(500, Math.min(1000, (width * height) / 1500))
+    );
+    const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
     const dots: Dot[] = Array.from({ length: dotCount }, (_, i) => {
-      const t = i / dotCount;
-      const angle = t * Math.PI * 2;
+      // Phyllotaxis setup
+      const distIdx = i / (dotCount - 1);
+      const dist = Math.sqrt(distIdx);
+      const angle = i * goldenAngle;
 
-      const ring = 0.34 + 0.10 * Math.sin(angle * 2.0) + 0.06 * Math.sin(angle * 5.0);
-      const scatter = (Math.random() - 0.5) * 0.08;
-      const r = ring + scatter;
+      const size = 1.0 + Math.random() * 2.0;
+      const speed = 0.8 + Math.random() * 0.6;
+      const offset = Math.random() * Math.PI * 2;
 
-      const size = 0.9 + Math.random() * 1.8;
-      const phase = Math.random() * Math.PI * 2;
-      const drift = 0.18 + Math.random() * 0.55;
-
-      const colorT = t;
-      const alpha = 0.35 + Math.random() * 0.55;
-
-      return { baseAngle: angle, baseRadius: r, size, phase, drift, colorT, alpha };
+      return { baseAngle: angle, dist, size, speed, offset };
     });
 
     function onPointerMove(e: PointerEvent) {
@@ -197,8 +276,8 @@ function HomePage() {
       const rect = heroEl.getBoundingClientRect();
       const nx = (e.clientX - rect.left) / Math.max(1, rect.width);
       const ny = (e.clientY - rect.top) / Math.max(1, rect.height);
-      pointerX = (nx - 0.5) * 2;
-      pointerY = (ny - 0.5) * 2;
+      pointerX = (nx - 0.75) * 3;
+      pointerY = (ny - 0.5) * 3;
       pointerActive = true;
     }
 
@@ -220,140 +299,61 @@ function HomePage() {
       const md = minDim();
       const centerX = cx();
       const centerY = cy();
-      const baseRot = t * (prefersReduced ? 0 : 0.06);
 
       if (!prefersReduced) {
         const targetX = pointerActive ? pointerX : 0;
         const targetY = pointerActive ? pointerY : 0;
-        pointerTx += (targetX - pointerTx) * 0.06;
-        pointerTy += (targetY - pointerTy) * 0.06;
+        pointerTx += (targetX - pointerTx) * 0.04;
+        pointerTy += (targetY - pointerTy) * 0.04;
       } else {
         pointerTx = 0;
         pointerTy = 0;
       }
 
-      const globalAlpha = isLight ? 0.30 : 0.58;
-      const glowBoost = isLight ? 0.0 : 0.14;
+      ctx2d.globalCompositeOperation = isLight ? "multiply" : "screen";
 
-      const colorShift = prefersReduced ? 0 : t * 0.03;
-
-      const posX = new Float32Array(dots.length);
-      const posY = new Float32Array(dots.length);
-      const dotA = new Float32Array(dots.length);
-      const dotT = new Float32Array(dots.length);
-
-      ctx2d.globalCompositeOperation = "source-over";
-
-      const parallaxAmp = md * (isLight ? 0.012 : 0.018);
+      // Max radius roughly covers half the screen width or a bit more
+      const maxR = md * 1.5;
 
       for (let i = 0; i < dots.length; i++) {
         const dot = dots[i];
-        const wobble = prefersReduced ? 0 : Math.sin(t * dot.drift + dot.phase) * 0.012;
-        const ang = dot.baseAngle + baseRot + wobble;
-        const rr = dot.baseRadius + wobble * 2.2;
 
-        const depth = 0.25 + 0.75 * (0.5 + 0.5 * Math.sin(dot.phase + t * 0.25));
-        const px = pointerTx * parallaxAmp * depth;
-        const py = pointerTy * parallaxAmp * depth;
+        // Wave logic: Pulse moves outward
+        // dot.dist is 0..1
+        // Make the wave frequency related to radial distance
+        const r = dot.dist * maxR;
 
-        const x = centerX + Math.cos(ang) * rr * md + px;
-        const y = centerY + Math.sin(ang) * rr * md + py;
+        // Wave phase: moves over time
+        const wavePhase = t * 1.2 - dot.dist * 8.0 + dot.offset * 0.1;
+        const wave = Math.sin(wavePhase); // -1..1
 
-        const nx = (x - centerX) / md;
-        const ny = (y - centerY) / md;
-        const dist = Math.sqrt(nx * nx + ny * ny);
+        // Parallax
+        const depth = 0.2 + 0.8 * dot.dist;
+        const px = pointerTx * md * 0.05 * depth;
+        const py = pointerTy * md * 0.05 * depth;
 
-        const mask = 1 - smoothstep(0.44, 0.64, dist);
-        if (mask <= 0.001) continue;
+        const x = centerX + Math.cos(dot.baseAngle) * r + px;
+        const y = centerY + Math.sin(dot.baseAngle) * r + py;
 
-        const twinkle = prefersReduced ? 1 : 0.70 + 0.30 * Math.sin(t * 1.8 + dot.phase);
-        const a = globalAlpha * dot.alpha * mask * twinkle;
-        if (a <= 0.001) continue;
+        // Pulsating logic
+        // Size pulses
+        const s = dot.size * (0.6 + 0.4 * wave);
 
-        const [r, g, b] = paletteAt(dot.colorT + colorShift);
-        const s = dot.size * (0.85 + 0.30 * mask) * (0.85 + 0.25 * depth);
+        // Alpha pulses
+        const alphaWave = Math.sin(wavePhase + Math.PI * 0.2); // slight offset
+        const aBase = isLight ? 0.5 : 0.6;
+        const a = aBase * (0.4 + 0.6 * alphaWave);
 
-        posX[i] = x;
-        posY[i] = y;
-        dotA[i] = a;
-        dotT[i] = dot.colorT + colorShift;
+        if (a <= 0.01 || s <= 0.01) continue;
 
-        ctx2d.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+        // Color based on distance + minor time shift
+        const cT = (dot.dist * 0.6 - t * 0.05) % 1;
+        const [R, G, B] = paletteAt(cT);
+
+        ctx2d.fillStyle = `rgba(${R}, ${G}, ${B}, ${a})`;
         ctx2d.beginPath();
         ctx2d.arc(x, y, s, 0, Math.PI * 2);
         ctx2d.fill();
-
-        if (!isLight && glowBoost > 0) {
-          ctx2d.fillStyle = `rgba(${accent[0]}, ${accent[1]}, ${accent[2]}, ${a * glowBoost})`;
-          ctx2d.beginPath();
-          ctx2d.arc(x, y, s * 2.2, 0, Math.PI * 2);
-          ctx2d.fill();
-        }
-      }
-
-      if (!prefersReduced) {
-        const cellSize = 88;
-        const maxDist = 110;
-        const maxDist2 = maxDist * maxDist;
-        const buckets = new Map<string, number[]>();
-
-        for (let i = 0; i < dots.length; i++) {
-          const a = dotA[i];
-          if (a <= 0.001) continue;
-          const gx = Math.floor(posX[i] / cellSize);
-          const gy = Math.floor(posY[i] / cellSize);
-          const key = `${gx}:${gy}`;
-          const arr = buckets.get(key);
-          if (arr) arr.push(i);
-          else buckets.set(key, [i]);
-        }
-
-        ctx2d.globalCompositeOperation = isLight ? "multiply" : "screen";
-        for (let i = 0; i < dots.length; i++) {
-          const ai = dotA[i];
-          if (ai <= 0.001) continue;
-
-          const gx = Math.floor(posX[i] / cellSize);
-          const gy = Math.floor(posY[i] / cellSize);
-          let lines = 0;
-
-          for (let oy = -1; oy <= 1; oy++) {
-            for (let ox = -1; ox <= 1; ox++) {
-              const key = `${gx + ox}:${gy + oy}`;
-              const arr = buckets.get(key);
-              if (!arr) continue;
-
-              for (const j of arr) {
-                if (j <= i) continue;
-                const aj = dotA[j];
-                if (aj <= 0.001) continue;
-
-                const dx = posX[j] - posX[i];
-                const dy = posY[j] - posY[i];
-                const d2 = dx * dx + dy * dy;
-                if (d2 > maxDist2) continue;
-
-                const d = Math.sqrt(d2);
-                const k = 1 - d / maxDist;
-                const a = Math.min(ai, aj) * (k * k) * (isLight ? 0.22 : 0.18);
-                if (a <= 0.002) continue;
-
-                const [r, g, b] = paletteAt((dotT[i] + dotT[j]) * 0.5);
-                ctx2d.strokeStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
-                ctx2d.lineWidth = 1;
-                ctx2d.beginPath();
-                ctx2d.moveTo(posX[i], posY[i]);
-                ctx2d.lineTo(posX[j], posY[j]);
-                ctx2d.stroke();
-
-                lines++;
-                if (lines >= 4) break;
-              }
-              if (lines >= 4) break;
-            }
-            if (lines >= 4) break;
-          }
-        }
       }
 
       rafId = requestAnimationFrame(frame);
@@ -488,6 +488,8 @@ function HomePage() {
           </div>
         </section>
 
+        <ModelsShowcase />
+
         <section id="about" className="content-section about-teaser">
           <div className="container" data-aos="fade-up">
                 <h2 className="section-title-center">Наша цель</h2>
@@ -592,7 +594,7 @@ function HomePage() {
                 </article>
 
                 <article className="news-list-item">
-                  <a href="/model/chessai/" className="news-list-link">
+                  <a href="/model/chessai" className="news-list-link">
                     <div className="news-list-body">
                       <span className="news-list-tag">Объявление</span>
                       <h4 className="news-list-title">ChessAI</h4>

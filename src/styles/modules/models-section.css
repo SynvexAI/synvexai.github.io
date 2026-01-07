@@ -1,0 +1,186 @@
+.models-section {
+  padding: 80px 0;
+  background-color: var(--color-bg-main);
+  position: relative;
+  z-index: 10;
+}
+
+.models-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.model-card {
+  background-color: transparent;
+  padding: 24px;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.model-card:hover {
+  background-color: var(--color-bg-surface-alt);
+  border-color: var(--color-border-medium);
+  transform: translateY(-4px);
+}
+
+.model-icon-box {
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-bg-surface);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+  border: 1px solid var(--color-border-subtle);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.model-card:hover .model-icon-box {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 15px rgba(var(--color-accent-raw), 0.2);
+}
+
+.model-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--color-accent);
+  /* Ensure SVG color is applied if using currentColor */
+  fill: currentColor;
+}
+
+.model-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-medium);
+  color: var(--color-text-primary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.model-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.model-desc {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+
+.model-actions {
+  margin-top: auto;
+}
+
+.model-action-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.model-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.model-link {
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.model-link:hover {
+  color: var(--color-accent);
+}
+
+.model-link i {
+  font-size: 0.8em;
+  transition: transform 0.2s;
+}
+
+.model-link:hover i {
+  transform: translateX(4px);
+}
+
+.model-footer-link {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: inline-block;
+}
+
+.model-footer-link:hover {
+  color: var(--color-accent);
+}
+
+/* Original touch: glow gradient on hover */
+.model-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: radial-gradient(
+    800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--color-accent-raw), 0.06),
+    transparent 40%
+  );
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.model-card:hover::before {
+  opacity: 1;
+}
+
+/* Icons specific colors if needed */
+.icon-chess {
+  color: #8ab4f8;
+}
+.icon-gdint {
+  color: #f28b82;
+}
+.icon-vision {
+  color: #fdd663;
+}
+.icon-text {
+  color: #81c995;
+}

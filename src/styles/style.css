@@ -1,26 +1,16 @@
-/* 1. Base */
+/* Base */
 @import "base/variables.css";
 @import "base/global.css";
 
-/* 2. Layout */
+/* Layout */
 @import "layout/structure.css";
 
-/* 3. Components */
+/* Components */
 @import "components/buttons.css";
 @import "components/inputs.css";
 @import "components/ui-kit.css";
 
-/* 4. Modules / Pages */
+/* Modules / Pages */
 @import "modules/hero.css";
-@import "modules/news-display.css";
-@import "base/variables.css";
-@import "base/global.css";
-
-@import "layout/structure.css";
-
-@import "components/buttons.css";
-@import "components/inputs.css";
-@import "components/ui-kit.css";
-
-@import "modules/hero.css";
+@import "modules/models-section.css";
 @import "modules/news-display.css";

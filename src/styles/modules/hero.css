@@ -38,136 +38,19 @@
 }
 
 .hero::before {
-  background: radial-gradient(
-      980px 720px at 16% 26%,
-      rgba(var(--color-accent-raw), 0.18),
-      transparent 62%
-    ),
-    radial-gradient(
-      860px 640px at 86% 18%,
-      rgba(var(--color-accent-raw), 0.12),
-      transparent 60%
-    ),
-    radial-gradient(
-      980px 760px at 58% 92%,
-      rgba(var(--color-accent-raw), 0.1),
-      transparent 64%
-    ),
-    radial-gradient(
-      1200px 900px at 50% 36%,
-      rgba(var(--color-accent-raw), 0.06),
-      transparent 66%
-    ),
-    radial-gradient(
-      1400px 980px at 50% 46%,
-      transparent 42%,
-      rgba(var(--color-black-raw), 0.78) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(var(--color-black-raw), 0.88) 0%,
-      rgba(var(--color-black-raw), 0.18) 42%,
-      rgba(var(--color-black-raw), 0.88) 100%
-    );
-  filter: saturate(1.05) contrast(1.02);
+  display: none;
 }
 
 .hero::after {
-  background: conic-gradient(
-      from 210deg at 50% 34%,
-      rgba(var(--color-accent-raw), 0.05),
-      transparent 22%,
-      rgba(var(--color-accent-raw), 0.03) 44%,
-      transparent 70%,
-      rgba(var(--color-accent-raw), 0.045)
-    ),
-    radial-gradient(
-      900px 520px at 50% 35%,
-      rgba(var(--color-accent-raw), 0.05),
-      transparent 64%
-    ),
-    radial-gradient(
-      700px 520px at 22% 78%,
-      rgba(var(--color-accent-raw), 0.03),
-      transparent 62%
-    ),
-    radial-gradient(
-      700px 520px at 78% 78%,
-      rgba(var(--color-accent-raw), 0.03),
-      transparent 62%
-    );
-  opacity: 0.2;
-  transform: translateZ(0);
-  filter: blur(0.2px);
-  -webkit-mask-image: radial-gradient(
-    circle at 50% 34%,
-    #000 0%,
-    transparent 72%
-  );
-  mask-image: radial-gradient(circle at 50% 34%, #000 0%, transparent 72%);
+  display: none;
 }
 
 [data-theme="light"] .hero::before {
-  background: radial-gradient(
-      980px 720px at 16% 26%,
-      rgba(var(--color-black-raw), 0.1),
-      transparent 62%
-    ),
-    radial-gradient(
-      860px 640px at 86% 18%,
-      rgba(var(--color-black-raw), 0.08),
-      transparent 60%
-    ),
-    radial-gradient(
-      980px 760px at 58% 92%,
-      rgba(var(--color-black-raw), 0.06),
-      transparent 64%
-    ),
-    radial-gradient(
-      1200px 900px at 50% 36%,
-      rgba(var(--color-black-raw), 0.05),
-      transparent 66%
-    ),
-    radial-gradient(
-      1400px 980px at 50% 46%,
-      transparent 40%,
-      rgba(var(--color-white-raw), 0.8) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(var(--color-white-raw), 0.9) 0%,
-      rgba(var(--color-white-raw), 0.56) 42%,
-      rgba(var(--color-white-raw), 0.9) 100%
-    );
-  filter: saturate(1.01) contrast(1.01);
+  display: none;
 }
 
 [data-theme="light"] .hero::after {
-  background: conic-gradient(
-      from 210deg at 50% 34%,
-      rgba(var(--color-black-raw), 0.06),
-      transparent 22%,
-      rgba(var(--color-black-raw), 0.04) 44%,
-      transparent 70%,
-      rgba(var(--color-black-raw), 0.05)
-    ),
-    radial-gradient(
-      900px 520px at 50% 35%,
-      rgba(var(--color-black-raw), 0.05),
-      transparent 64%
-    ),
-    radial-gradient(
-      700px 520px at 22% 78%,
-      rgba(var(--color-black-raw), 0.04),
-      transparent 62%
-    ),
-    radial-gradient(
-      700px 520px at 78% 78%,
-      rgba(var(--color-black-raw), 0.04),
-      transparent 62%
-    );
-  opacity: 0.16;
-  filter: blur(0.2px);
+  display: none;
 }
 
 .hero-content {

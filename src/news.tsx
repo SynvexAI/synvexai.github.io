@@ -146,7 +146,7 @@ export default function NewsPage() {
                 </article>
 
                 <article className="news-list-item">
-                  <a href="/model/chessai/" className="news-list-link">
+                  <a href="/model/chessai" className="news-list-link">
                     <div className="news-list-body">
                       <span className="news-list-tag">Объявление</span>
                       <h4 className="news-list-title">ChessAI</h4>

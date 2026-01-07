@@ -1,4 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap");
+
+/* ========================================================= */
+/*                         ROOT (DARK)                       */
+/* ========================================================= */
+
 :root {
+  /* RAW colors (source of truth) */
   --color-black-raw: 10, 10, 12;
   --color-white-raw: 234, 234, 238;
   --color-bg-surface-alt-raw: 36, 36, 40;
@@ -15,7 +23,7 @@
   --color-success: rgb(var(--color-success-raw));
 
   /* Surfaces */
-  --color-bg-main: #212121;
+  --color-bg-main: #000000;
   --color-bg-surface: #111214;
   --color-bg-surface-alt: rgba(255, 255, 255, 0.03);
   --color-bg-interactive: rgba(255, 255, 255, 0.04);
@@ -26,17 +34,19 @@
   --color-text-secondary: rgba(var(--color-white-raw), 0.65);
   --color-text-tertiary: rgba(var(--color-white-raw), 0.42);
   --color-text-link: var(--color-accent);
-  --color-text-link-hover: #fff;
+  --color-text-link-hover: #ffffff;
   --color-text-on-accent-bg: #0a0a0a;
   --color-text-error: #ff6b6b;
   --color-text-success: #86f3c2;
   --color-text-info: var(--color-accent);
 
-  /* Borders & Shadows */
+  /* Borders */
   --color-border-subtle: rgba(255, 255, 255, 0.05);
   --color-border-medium: rgba(255, 255, 255, 0.12);
   --color-border-strong: rgba(255, 255, 255, 0.22);
   --color-border-focus: rgba(var(--color-accent-raw), 0.45);
+
+  /* Shadows */
   --shadow-xs: 0 1px 1px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.04) inset;
   --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.45),
@@ -48,16 +58,18 @@
   --shadow-xl: 0 28px 60px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(255, 255, 255, 0.06) inset;
 
-  /* Rings / Glow */
+  /* Focus ring */
   --ring: 0 0 0 1px rgba(255, 255, 255, 0.06) inset,
     0 0 0 2px rgba(var(--color-accent-raw), 0.18),
     0 0 24px rgba(var(--color-accent-raw), 0.14);
 
-  /* Code & Inputs */
+  /* Code */
   --code-block-bg: #111214;
   --code-block-border: rgba(255, 255, 255, 0.08);
+
+  /* Fonts */
   --font-family-main: "Manrope", system-ui, -apple-system, sans-serif;
-  --font-family-display: "Space Grotesk", var(--font-family-main);
+  --font-family-display: "Manrope", system-ui, sans-serif;
   --font-family-code: "JetBrains Mono", monospace;
 
   /* Weights */
@@ -66,8 +78,8 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* Theme Defaults (Dark) */
-  --bg-color: #000000;
+  /* App semantic aliases */
+  --bg-color: var(--color-bg-main);
   --text-color: var(--color-text-primary);
   --secondary-text-color: var(--color-text-secondary);
   --accent-color: var(--color-accent);
@@ -84,17 +96,50 @@
   --hero-glow: rgba(var(--color-accent-raw), 0.25);
 }
 
+/* ========================================================= */
+/*                         LIGHT THEME                       */
+/* ========================================================= */
+
 [data-theme="light"] {
-  --bg-color: #f6f7fb;
-  --text-color: #0c0f16;
-  --secondary-text-color: #3f4552;
+  --color-black-raw: 255, 255, 255;
+  --color-white-raw: 12, 15, 22;
+
+  --color-bg-main: #f6f7fb;
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-alt: #eef0f5;
+  --color-bg-interactive: #e4e7ee;
+  --color-bg-overlay: rgba(0, 0, 0, 0.4);
+
+  --color-text-primary: #0c0f16;
+  --color-text-secondary: #3f4552;
+  --color-text-tertiary: rgba(12, 15, 22, 0.5);
+  --color-text-link: #0c0f16;
+  --color-text-link-hover: #000000;
+  --color-text-on-accent-bg: #ffffff;
+
+  --color-border-subtle: rgba(0, 0, 0, 0.06);
+  --color-border-medium: rgba(0, 0, 0, 0.12);
+  --color-border-strong: rgba(0, 0, 0, 0.22);
+  --color-border-focus: rgba(12, 15, 22, 0.35);
+
+  --shadow-xs: 0 1px 2px rgba(19, 28, 44, 0.05);
+  --shadow-sm: 0 4px 10px rgba(19, 28, 44, 0.08);
+  --shadow-md: 0 8px 24px rgba(19, 28, 44, 0.08);
+  --shadow-lg: 0 16px 36px rgba(19, 28, 44, 0.12);
+  --shadow-xl: 0 28px 60px rgba(19, 28, 44, 0.16);
+
+  --ring: 0 0 0 3px rgba(12, 15, 22, 0.15);
+
+  --bg-color: var(--color-bg-main);
+  --text-color: var(--color-text-primary);
+  --secondary-text-color: var(--color-text-secondary);
   --accent-color: #ffffff;
-  --border-color: rgba(0, 0, 0, 0.12);
+  --border-color: var(--color-border-medium);
   --card-bg-color: #ffffff;
-  --card-shadow: 0 8px 24px rgba(19, 28, 44, 0.08);
-  --card-hover-shadow: 0 16px 36px rgba(19, 28, 44, 0.12);
+  --card-shadow: var(--shadow-md);
+  --card-hover-shadow: var(--shadow-lg);
   --header-bg: rgba(255, 255, 255, 0.8);
-  --header-shadow: 0 10px 30px rgba(19, 28, 44, 0.1);
+  --header-shadow: var(--shadow-sm);
   --button-text-color: #0c0f16;
   --subtle-bg-color: #eef0f5;
   --news-meta-color: rgba(12, 15, 22, 0.5);
