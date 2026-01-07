@@ -86,7 +86,7 @@ function ModelsShowcase() {
     {
       title: "Lume",
       desc: "Создавайте связные видеосцены по текстовому описанию с сохранением движения, стиля и визуальной логики.",
-      iconSrc: "/icons/model/image.svg",
+      iconSrc: "/icons/model/lume.png",
       colorClass: "icon-vision",
       badge: "Скоро",
       links: [{ label: "Try in Playground", url: "#" }],
