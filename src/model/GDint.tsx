@@ -3,6 +3,7 @@ import SiteFooter from "../SiteFooter";
 import MainHeader from "../components/MainHeader";
 import type { MainHeaderNavLink } from "../components/MainHeader";
 import { useAutoTheme } from "../hooks/useAutoTheme";
+import { ROUTES } from "../siteRoutes";
 
 const CODE_FILES = [
   {
@@ -70,10 +71,6 @@ export default function GDintPage() {
   }, []);
 
   useEffect(() => {
-    document.title = "GDint - Обучение ИИ для Geometry Dash";
-  }, []);
-
-  useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
       setIsScrolled(y > 50);
@@ -126,7 +123,7 @@ export default function GDintPage() {
     }
   }
 
-  const navLinks: MainHeaderNavLink[] = [{ label: "Главная", href: "/" }];
+  const navLinks: MainHeaderNavLink[] = [{ label: "Главная", href: ROUTES.home }];
 
   return (
     <>

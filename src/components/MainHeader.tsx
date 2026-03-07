@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { MouseEvent } from "react";
+import { ROUTES } from "../siteRoutes";
 
 export type MainHeaderNavLink = {
   label: string;
@@ -51,7 +52,7 @@ export default function MainHeader({
     <header id="main-header" className={headerClasses.join(" ")}>
       <div className="container">
         <div className="logo">
-          <a href="/">SynvexAI</a>
+          <a href={ROUTES.home}>SynvexAI</a>
         </div>
 
         <div className="right-side">

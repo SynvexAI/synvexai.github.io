@@ -3,6 +3,7 @@ import SiteFooter from "./SiteFooter";
 import MainHeader from "./components/MainHeader";
 import type { MainHeaderNavLink } from "./components/MainHeader";
 import { useAutoTheme } from "./hooks/useAutoTheme";
+import { ROUTES } from "./siteRoutes";
 
 export default function NewsPage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,7 +27,7 @@ export default function NewsPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinks: MainHeaderNavLink[] = [{ label: "Главная", href: "/" }];
+  const navLinks: MainHeaderNavLink[] = [{ label: "Главная", href: ROUTES.home }];
 
   return (
     <>
@@ -51,7 +52,7 @@ export default function NewsPage() {
                       className="featured-news-link featured-news-link--cover"
                     >
                       <div className="featured-image-wrapper">
-                        <img src="/news/banner.png" alt="ReMind" />
+                        <img src="/images/banners/banner.png" alt="ReMind" />
                       </div>
                       <div className="featured-content">
                         <div className="featured-header">
@@ -73,7 +74,7 @@ export default function NewsPage() {
 
               <div className="news-sticky-list">
                 <article className="news-list-item">
-                  <a href="/model/GDint/" className="news-list-link">
+                  <a href={ROUTES.gdint} className="news-list-link">
                     <div className="news-list-body">
                       <span className="news-list-tag">Релиз</span>
                       <h4 className="news-list-title">Представляем GDInt</h4>
@@ -103,7 +104,7 @@ export default function NewsPage() {
                 </article>
 
                 <article className="news-list-item">
-                  <a href="/model/chessai" className="news-list-link">
+                  <a href={ROUTES.chessAi} className="news-list-link">
                     <div className="news-list-body">
                       <span className="news-list-tag">Объявление</span>
                       <h4 className="news-list-title">ChessAI</h4>

@@ -1,3 +1,5 @@
+import { ROUTES } from "./siteRoutes";
+
 export default function SiteFooter() {
   return (
     <footer id="site-footer">
@@ -43,14 +45,14 @@ export default function SiteFooter() {
               <li><a href="#">Публикации</a></li>
               <li><a href="#">Научные статьи</a></li>
               <li><a href="#">Блог</a></li>
-              <li><a href="/news/">Новости</a></li>
+              <li><a href={ROUTES.news}>Новости</a></li>
             </ul>
           </div>
 
           <div className="footer-column">
             <h3>Узнать больше</h3>
             <ul>
-              <li><a href="/">О нас</a></li>
+              <li><a href={ROUTES.home}>О нас</a></li>
               <li><a href="#">Карьера</a></li>
               <li><a href="#">Контакты</a></li>
               <li><a href="#">Политика конфиденциальности</a></li>

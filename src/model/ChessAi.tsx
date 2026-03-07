@@ -5,6 +5,7 @@ import SiteFooter from "../SiteFooter";
 import MainHeader from "../components/MainHeader";
 import type { MainHeaderNavLink } from "../components/MainHeader";
 import { useAutoTheme } from "../hooks/useAutoTheme";
+import { ROUTES } from "../siteRoutes";
 
 const CODE_FILES = [
   {
@@ -124,7 +125,7 @@ export default function ChessAiPage() {
     }
   }
 
-  const navLinks: MainHeaderNavLink[] = [{ label: "Главная", href: "/" }];
+  const navLinks: MainHeaderNavLink[] = [{ label: "Главная", href: ROUTES.home }];
 
   return (
     <>

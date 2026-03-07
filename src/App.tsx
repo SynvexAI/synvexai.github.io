@@ -6,9 +6,11 @@ import SiteFooter from "./SiteFooter";
 import Roadmap from "./components/Roadmap";
 import GDintPage from "./model/GDint";
 import ChessAiPage from "./model/ChessAi";
+import NotFoundPage from "./NotFoundPage";
 import MainHeader from "./components/MainHeader";
 import type { MainHeaderNavLink } from "./components/MainHeader";
 import { useAutoTheme } from "./hooks/useAutoTheme";
+import { ROUTES, resolveRoute } from "./siteRoutes";
 
 const HERO_TEXT =
   "Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека.";
@@ -408,7 +410,7 @@ function HomePage() {
   }
 
   const navLinks: MainHeaderNavLink[] = [
-    { label: "Главная", href: "/", isActive: true },
+    { label: "Главная", href: ROUTES.home, isActive: true },
     { label: "Roadmap", href: "#roadmap", onClick: () => scrollToId("roadmap") },
     { label: "О нас", href: "#about", onClick: () => scrollToId("about") },
     { label: "Новости", href: "#news-showcase", onClick: () => scrollToId("news-showcase") },
@@ -473,10 +475,14 @@ function HomePage() {
                 </p>
 
             <a
-              href="/about-page.html"
+              href={`${ROUTES.home}#about`}
               className="text-link"
               data-aos="fade-up"
               data-aos-delay="400"
+              onClick={(event) => {
+                event.preventDefault();
+                scrollToId("about");
+              }}
             >
               Узнать больше о нашей философии
             </a>
@@ -487,7 +493,7 @@ function HomePage() {
           <div className="container">
             <div className="section-header" data-aos="fade-right">
               <h2 className="section-title">Новости</h2>
-              <a href="/news/" className="view-all-link">
+              <a href={ROUTES.news} className="view-all-link">
                 Все новости <i className="fas fa-arrow-right"></i>
               </a>
             </div>
@@ -501,7 +507,7 @@ function HomePage() {
                       className="featured-news-link featured-news-link--cover"
                     >
                       <div className="featured-image-wrapper">
-                        <img src="images/banners/remind-banner.png" alt="ReMind" />
+                        <img src="/images/banners/remind-banner.png" alt="ReMind" />
                       </div>
                       <div className="featured-content">
                         <div className="featured-header">
@@ -523,7 +529,7 @@ function HomePage() {
 
               <div className="news-sticky-list" data-aos="fade-up" data-aos-delay="150">
                 <article className="news-list-item">
-                  <a href="/model/GDint/" className="news-list-link">
+                  <a href={ROUTES.gdint} className="news-list-link">
                     <div className="news-list-body">
                       <span className="news-list-tag">Релиз</span>
                       <h4 className="news-list-title">Представляем GDInt</h4>
@@ -538,7 +544,7 @@ function HomePage() {
                 </article>
 
                 <article className="news-list-item">
-                  <a href="/model/chessai" className="news-list-link">
+                  <a href={ROUTES.chessAi} className="news-list-link">
                     <div className="news-list-body">
                       <span className="news-list-tag">Объявление</span>
                       <h4 className="news-list-title">ChessAI</h4>
@@ -646,19 +652,19 @@ function HomePage() {
 }
 
 export default function App() {
-  const path = window.location.pathname.toLowerCase();
+  const route = resolveRoute(window.location.pathname);
 
-  if (path.startsWith("/news")) {
-    return <NewsPage />;
+  switch (route) {
+    case "news":
+      return <NewsPage />;
+    case "gdint":
+      return <GDintPage />;
+    case "chessAi":
+      return <ChessAiPage />;
+    case "notFound":
+      return <NotFoundPage />;
+    case "home":
+    default:
+      return <HomePage />;
   }
-
-  if (path.startsWith("/model/gdint")) {
-    return <GDintPage />;
-  }
-
-  if (path.startsWith("/model/chessai")) {
-    return <ChessAiPage />;
-  }
-
-  return <HomePage />;
 }
