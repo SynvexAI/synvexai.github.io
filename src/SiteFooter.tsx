@@ -35,7 +35,7 @@ export default function SiteFooter() {
           <div className="footer-column">
             <h3>Продукты</h3>
             <ul>
-              <li><a href="https://pashaddd.alwaysdata.net/" target="_blank" rel="noreferrer">ReMind</a></li>
+              <li><a href="https://chat.synvexai.com" target="_blank" rel="noreferrer">ReMind</a></li>
             </ul>
           </div>
 
@@ -55,7 +55,7 @@ export default function SiteFooter() {
               <li><a href={ROUTES.home}>О нас</a></li>
               <li><a href="#">Карьера</a></li>
               <li><a href="#">Контакты</a></li>
-              <li><a href="#">Политика конфиденциальности</a></li>
+              <li><a href={ROUTES.privacyPolicy}>Политика конфиденциальности</a></li>
             </ul>
           </div>
         </div>

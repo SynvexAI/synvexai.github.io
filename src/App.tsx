@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import NewsPage from "./news";
@@ -7,6 +7,7 @@ import Roadmap from "./components/Roadmap";
 import GDintPage from "./model/GDint";
 import ChessAiPage from "./model/ChessAi";
 import NotFoundPage from "./NotFoundPage";
+import PrivacyPolicyPage from "./PrivacyPolicyPage";
 import MainHeader from "./components/MainHeader";
 import type { MainHeaderNavLink } from "./components/MainHeader";
 import { useAutoTheme } from "./hooks/useAutoTheme";
@@ -16,37 +17,7 @@ const HERO_TEXT =
   "Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека.";
 
 function HeroTitle() {
-  const nodes = useMemo(() => {
-    const out: React.ReactNode[] = [];
-
-    HERO_TEXT.split(" ").forEach((word, wi) => {
-      const chars = word.split("").map((ch, ci) => {
-        return (
-          <span
-            key={`${wi}-${ci}`}
-            className="char"
-          >
-            {ch}
-          </span>
-        );
-      });
-
-      out.push(
-        <span
-          key={`w-${wi}`}
-          className="word-wrapper"
-        >
-          {chars}
-        </span>
-      );
-
-      out.push(<span key={`s-${wi}`}>{"\u00A0"}</span>);
-    });
-
-    return out;
-  }, []);
-
-  return <>{nodes}</>;
+  return <span className="word-wrapper">{HERO_TEXT}</span>;
 }
 
 function ModelsShowcase() {
@@ -369,11 +340,6 @@ function HomePage() {
     });
     observer.observe(canvasEl);
 
-    // Initial start handled by observer or fallthrough if needed,
-    // but observer callback runs asynchronously.
-    // Let's rely on observer to start it, or force one frame.
-    // Actually, IntersectionObserver callback usually runs once on mount.
-
     window.addEventListener("resize", resize, { passive: true });
     return () => {
       window.removeEventListener("resize", resize);
@@ -503,7 +469,7 @@ function HomePage() {
                 <div className="featured-news-wrapper">
                   <article className="featured-news-card">
                     <a
-                      href="https://pashaddd.alwaysdata.net/"
+                      href="https://chat.synvexai.com"
                       className="featured-news-link featured-news-link--cover"
                     >
                       <div className="featured-image-wrapper">
@@ -661,6 +627,8 @@ export default function App() {
       return <GDintPage />;
     case "chessAi":
       return <ChessAiPage />;
+    case "privacyPolicy":
+      return <PrivacyPolicyPage />;
     case "notFound":
       return <NotFoundPage />;
     case "home":

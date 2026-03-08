@@ -6,47 +6,83 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>SynvexAI – AI Reasoning Model for Logical Problem Solving</title>
-    <meta name="description"
-        content="SynvexAI is an advanced AI reasoning model optimized for step-by-step logical problem solving, math tasks and developer API integration." />
-    <meta name="keywords"
-        content="AI reasoning model, logical problem solving AI, math AI model, LLM reasoning, AI API for developers, GPT alternative" />
+    <title>SynvexAI - проекты, новости и эксперименты в области ИИ</title>
+    <meta
+        name="description"
+        content="Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека."
+    />
     <meta name="author" content="SynvexAI" />
-    <meta name="robots" content="index, follow" />
+    <meta name="application-name" content="SynvexAI" />
+    <meta name="apple-mobile-web-app-title" content="SynvexAI" />
+    <meta name="robots" content="index,follow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#000000" />
 
-    <link rel="canonical" href="https://synvexai.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="SynvexAI" />
+    <meta property="og:title" content="SynvexAI" />
+    <meta
+        property="og:description"
+        content="Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека."
+    />
+    <meta property="og:image" content="https://synvexai.com/images/banners/banner.png" />
+    <meta property="og:image:width" content="2048" />
+    <meta property="og:image:height" content="1152" />
+    <meta property="og:image:alt" content="Баннер SynvexAI" />
 
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://synvexai.com/sitemap.xml" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SynvexAI" />
+    <meta
+        name="twitter:description"
+        content="Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека. "
+    />
+    <meta name="twitter:image" content="https://synvexai.com/images/banners/banner.png" />
+    <meta name="twitter:site" content="@SynvexAI" />
 
     <link rel="icon" type="image/svg+xml" href="/icons/branding/logo.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/branding/logo-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/branding/logo-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/branding/apple-touch-icon.png" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://synvexai.com/" />
-    <meta property="og:title" content="SynvexAI – AI Reasoning Model for Logical Problem Solving" />
-    <meta property="og:description"
-        content="Advanced AI model designed for structured reasoning, step-by-step problem solving and developer API integration." />
-    <meta property="og:image" content="https://synvexai.com/images/og-image.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://synvexai.com/" />
-    <meta name="twitter:title" content="SynvexAI – AI Reasoning Model" />
-    <meta name="twitter:description"
-        content="AI reasoning engine for logical tasks, math problems and structured analysis." />
-    <meta name="twitter:image" content="https://synvexai.com/images/og-image.png" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script>
+        (function () {
+            var darkThemeColor = "#000000";
+            var lightThemeColor = "#f6f7fb";
+            var theme = "dark";
 
-    <meta name="theme-color" content="#0f172a" />
+            try {
+                var savedTheme = localStorage.getItem("theme");
+                if (savedTheme === "light" || savedTheme === "dark") {
+                    theme = savedTheme;
+                } else if (window.matchMedia && !window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    theme = "light";
+                }
+            } catch {
+                if (window.matchMedia && !window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    theme = "light";
+                }
+            }
+
+            document.documentElement.setAttribute("data-theme", theme);
+            document.documentElement.style.colorScheme = theme;
+
+            var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+            if (themeColorMeta) {
+                themeColorMeta.setAttribute("content", theme === "light" ? lightThemeColor : darkThemeColor);
+            }
+        })();
+    </script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC2F3N4NFX"></script>
     <script>

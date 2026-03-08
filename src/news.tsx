@@ -48,7 +48,7 @@ export default function NewsPage() {
                 <div className="featured-news-wrapper">
                   <article className="featured-news-card">
                     <a
-                      href="https://pashaddd.alwaysdata.net/"
+                      href="https://chat.synvexai.com"
                       className="featured-news-link featured-news-link--cover"
                     >
                       <div className="featured-image-wrapper">
