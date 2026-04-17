@@ -37,6 +37,9 @@ export default function SiteFooter() {
             <ul>
               <li><a href="https://chat.synvexai.com" target="_blank" rel="noreferrer">ReMind</a></li>
             </ul>
+            <ul>
+              <li><a href="https://devex.synvexai.com" target="_blank" rel="noreferrer">Devex</a></li>
+            </ul>
           </div>
 
           <div className="footer-column">
@@ -53,7 +56,7 @@ export default function SiteFooter() {
             <h3>Узнать больше</h3>
             <ul>
               <li><a href={ROUTES.home}>О нас</a></li>
-              <li><a href="#">Карьера</a></li>
+              {/* <li><a href="#">Карьера</a></li> */}
               <li><a href="#">Контакты</a></li>
               <li><a href={ROUTES.privacyPolicy}>Политика конфиденциальности</a></li>
             </ul>

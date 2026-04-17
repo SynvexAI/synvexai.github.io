@@ -326,7 +326,6 @@ function HomePage() {
       rafId = requestAnimationFrame(frame);
     }
 
-    // Optimization: Stop animation when off-screen
     const observer = new IntersectionObserver(([entry]) => {
       isVisible = entry.isIntersecting;
       if (isVisible) {
@@ -439,19 +438,6 @@ function HomePage() {
                     проверять идеи и не бояться нового. Это позволяет нам создавать гибкие инструменты и даже давать ИИ
                     разные "личности", чтобы вы могли выбрать ту, с которой вам комфортнее всего общаться.
                 </p>
-
-            <a
-              href={`${ROUTES.home}#about`}
-              className="text-link"
-              data-aos="fade-up"
-              data-aos-delay="400"
-              onClick={(event) => {
-                event.preventDefault();
-                scrollToId("about");
-              }}
-            >
-              Узнать больше о нашей философии
-            </a>
           </div>
         </section>
 
