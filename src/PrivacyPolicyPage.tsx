@@ -419,9 +419,9 @@ export default function PrivacyPolicyPage() {
     { label: "Политика", href: ROUTES.privacyPolicy, isActive: true },
   ];
 
-  const contactSection = policyDocument.sections.find(
-    (section) => section.heading.text === "20. Контакты",
-  );
+  // const contactSection = policyDocument.sections.find(
+  //   (section) => section.heading.text === "20. Контакты",
+  // );
 
   return (
     <>
