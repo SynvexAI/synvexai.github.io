@@ -481,90 +481,93 @@ function HomePage() {
 
               <div className="news-sticky-list" data-aos="fade-up" data-aos-delay="150">
                 <article className="news-list-item">
-                  <a href={ROUTES.gdint} className="news-list-link">
-                    <div className="news-list-body">
-                      <span className="news-list-tag">Релиз</span>
-                      <h4 className="news-list-title">Представляем GDInt</h4>
-                      <span className="news-list-meta">6 минут чтения</span>
-                    </div>
-                    <div
-                      className="news-list-thumb"
-                      style={{ backgroundImage: "url('/news/WebsiteCreatedForGDint.jpg')" }}
-                      aria-hidden="true"
-                    ></div>
-                  </a>
-                </article>
-
-                <article className="news-list-item">
-                  <a href={ROUTES.chessAi} className="news-list-link">
-                    <div className="news-list-body">
-                      <span className="news-list-tag">Объявление</span>
-                      <h4 className="news-list-title">ChessAI</h4>
-                      <span className="news-list-meta">3 минуты чтения</span>
-                    </div>
-                    <div
-                      className="news-list-thumb"
-                      style={{ backgroundImage: "url('/news/chess-ai-1.png')" }}
-                      aria-hidden="true"
-                    ></div>
-                  </a>
-                </article>
-
-                <article className="news-list-item">
-                  <a href="https://synvexai.github.io/MindForge/" className="news-list-link">
-                    <div className="news-list-body">
-                      <span className="news-list-tag">ReMind</span>
-                      <h4 className="news-list-title">MindForge</h4>
-                      <span className="news-list-meta">Несколько секунд</span>
-                    </div>
-                    <div
-                      className="news-list-thumb"
-                      style={{ backgroundImage: "url('/news/MindForge.png')" }}
-                      aria-hidden="true"
-                    ></div>
-                  </a>
-                </article>
-
-                <article className="news-list-item">
                   <a href="#" className="news-list-link">
                     <div className="news-list-body">
-                      <span className="news-list-tag">ReMind</span>
-                      <h4 className="news-list-title">Поддержка таблиц в ReMind</h4>
-                      <span className="news-list-meta">Новое</span>
+                      <span className="news-list-tag">Анонс</span>
+                      <h4 className="news-list-title">Devex</h4>
+                      <span className="news-list-meta">13 апреля 2026</span>
                     </div>
                     <div
                       className="news-list-thumb"
-                      style={{ backgroundImage: "url('/news/TableSupportInReMind.jpg')" }}
+                      style={{ backgroundImage: "url('/news/2/new-devex.png')" }}
                       aria-hidden="true"
                     ></div>
                   </a>
                 </article>
 
                 <article className="news-list-item">
-                  <a href="#" className="news-list-link">
+                  <a href="https://github.com/SynvexAI" className="news-list-link">
                     <div className="news-list-body">
-                      <span className="news-list-tag">ReMind</span>
-                      <h4 className="news-list-title">Ссылки и картинки в ReMind</h4>
-                      <span className="news-list-meta">Обновление</span>
+                      <span className="news-list-tag">GitHub</span>
+                      <h4 className="news-list-title">SynvexAI подтверждена на GitHub</h4>
+                      <span className="news-list-meta">12 марта 2026</span>
                     </div>
                     <div
                       className="news-list-thumb"
-                      style={{ backgroundImage: "url('/news/ReMindСanNowThinkOutLoudAndDisplayLinks2.jpg')" }}
+                      style={{ backgroundImage: "url('/news/2/gitverifed.png')" }}
                       aria-hidden="true"
                     ></div>
                   </a>
                 </article>
 
                 <article className="news-list-item">
-                  <a href="#" className="news-list-link">
+                  <a
+                    href="https://synvexai.com/policies/privacy-policy"
+                    className="news-list-link"
+                  >
                     <div className="news-list-body">
-                      <span className="news-list-tag">SynvexAI</span>
-                      <h4 className="news-list-title">Мы создали собственный сайт</h4>
-                      <span className="news-list-meta">8 минут чтения</span>
+                      <span className="news-list-tag">Безопасность</span>
+                      <h4 className="news-list-title">Политика конфиденциальности</h4>
+                      <span className="news-list-meta">8 марта 2026</span>
                     </div>
                     <div
                       className="news-list-thumb"
-                      style={{ backgroundImage: "url('/news/news1.png')" }}
+                      style={{ backgroundImage: "url('/news/2/privacy-policy.png')" }}
+                      aria-hidden="true"
+                    ></div>
+                  </a>
+                </article>
+
+                <article className="news-list-item">
+                  <a href="https://chat.synvexai.com" className="news-list-link">
+                    <div className="news-list-body">
+                      <span className="news-list-tag">ReMind</span>
+                      <h4 className="news-list-title">ReMind теперь на chat.synvexai.com</h4>
+                      <span className="news-list-meta">25 февраля 2026</span>
+                    </div>
+                    <div
+                      className="news-list-thumb"
+                      style={{ backgroundImage: "url('/news/2/remind-domain.png')" }}
+                      aria-hidden="true"
+                    ></div>
+                  </a>
+                </article>
+
+                <article className="news-list-item">
+                  <a href="https://github.com/ReNothingg/ReMind" className="news-list-link">
+                    <div className="news-list-body">
+                      <span className="news-list-tag">Open Source</span>
+                      <h4 className="news-list-title">ReMind теперь доступен на GitHub</h4>
+                      <span className="news-list-meta">21 февраля 2026</span>
+                    </div>
+                    <div
+                      className="news-list-thumb"
+                      style={{ backgroundImage: "url('/news/2/remind-github.png')" }}
+                      aria-hidden="true"
+                    ></div>
+                  </a>
+                </article>
+
+                <article className="news-list-item">
+                  <a href="https://chat.synvexai.com" className="news-list-link">
+                    <div className="news-list-body">
+                      <span className="news-list-tag">Release</span>
+                      <h4 className="news-list-title">Открываем доступ к ReMind</h4>
+                      <span className="news-list-meta">1 декабря 2025</span>
+                    </div>
+                    <div
+                      className="news-list-thumb"
+                      style={{ backgroundImage: "url('/news/2/remind-release.png')" }}
                       aria-hidden="true"
                     ></div>
                   </a>

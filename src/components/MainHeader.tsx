@@ -18,7 +18,6 @@ type MainHeaderProps = {
 export default function MainHeader({
   isScrolled,
   navLinks = [],
-  showPrompt = false,
 }: MainHeaderProps) {
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollRef = useRef(0);
@@ -76,19 +75,6 @@ export default function MainHeader({
               ))}
             </ul>
           </nav>
-
-          {showPrompt && (
-            <form className="header-prompt-form" action="https://pashaddd.alwaysdata.net" method="get">
-              <input
-                type="text"
-                name="prompt"
-                placeholder="Спроси ReMind"
-                aria-label="Запрос к ReMind"
-                required
-              />
-              <button type="submit">Спросить</button>
-            </form>
-          )}
         </div>
       </div>
     </header>

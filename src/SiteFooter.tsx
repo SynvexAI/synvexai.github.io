@@ -68,9 +68,9 @@ export default function SiteFooter() {
             <span>
               SynvexAI © 2025-{new Date().getFullYear()}
             </span>
-            <a href="#" className="manage-cookies-link">
+            {/* <a href="#" className="manage-cookies-link">
               Управление cookie
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
