@@ -83,6 +83,8 @@
   --text-color: var(--color-text-primary);
   --secondary-text-color: var(--color-text-secondary);
   --accent-color: var(--color-accent);
+  --selection-bg: var(--accent-color);
+  --selection-text: var(--color-text-on-accent-bg);
   --border-color: var(--color-border-medium);
   --card-bg-color: var(--color-bg-surface);
   --card-shadow: var(--shadow-md);
@@ -101,8 +103,7 @@
 /* ========================================================= */
 
 [data-theme="light"] {
-  --color-black-raw: 255, 255, 255;
-  --color-white-raw: 12, 15, 22;
+  --color-accent-raw: 12, 15, 22;
 
   --color-bg-main: #f6f7fb;
   --color-bg-surface: #ffffff;
@@ -133,16 +134,18 @@
   --bg-color: var(--color-bg-main);
   --text-color: var(--color-text-primary);
   --secondary-text-color: var(--color-text-secondary);
-  --accent-color: #ffffff;
+  --accent-color: var(--color-text-primary);
+  --selection-bg: rgba(60, 108, 220, 0.28);
+  --selection-text: var(--color-text-primary);
   --border-color: var(--color-border-medium);
   --card-bg-color: #ffffff;
   --card-shadow: var(--shadow-md);
   --card-hover-shadow: var(--shadow-lg);
   --header-bg: rgba(255, 255, 255, 0.8);
   --header-shadow: var(--shadow-sm);
-  --button-text-color: #0c0f16;
+  --button-text-color: #ffffff;
   --subtle-bg-color: #eef0f5;
   --news-meta-color: rgba(12, 15, 22, 0.5);
   --link-hover-color: #0c0f16;
-  --hero-glow: rgba(255, 255, 255, 0.2);
+  --hero-glow: rgba(12, 15, 22, 0.14);
 }

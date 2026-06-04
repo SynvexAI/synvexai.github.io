@@ -111,13 +111,9 @@ function ModelsShowcase() {
                 </div>
               </div>
 
-              <a
-                href={m.footerLinkUrl}
-                className="model-footer-link"
-                onClick={(e) => e.stopPropagation()}
-              >
+              <span className="model-footer-link">
                 {m.footerLink}
-              </a>
+              </span>
             </a>
           ))}
         </div>
