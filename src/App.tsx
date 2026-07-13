@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import NewsPage from "./news";
@@ -9,6 +9,7 @@ import ChessAiPage from "./model/ChessAi";
 import NotFoundPage from "./NotFoundPage";
 import PrivacyPolicyPage from "./PrivacyPolicyPage";
 import MainHeader from "./components/MainHeader";
+import DotField from "./components/DotField";
 import type { MainHeaderNavLink } from "./components/MainHeader";
 import { useAutoTheme } from "./hooks/useAutoTheme";
 import { ROUTES, resolveRoute } from "./siteRoutes";
@@ -126,9 +127,7 @@ function ModelsShowcase() {
 function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showTop, setShowTop] = useState(false);
-  const theme = useAutoTheme();
-
-  const heroParticlesRef = useRef<HTMLCanvasElement | null>(null);
+  useAutoTheme();
 
   useEffect(() => {
     AOS.init({
@@ -138,214 +137,6 @@ function HomePage() {
       easing: "cubic-bezier(0.25, 0.8, 0.25, 1)",
     });
   }, []);
-
-  useEffect(() => {
-    const canvas = heroParticlesRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const canvasEl: HTMLCanvasElement = canvas;
-    const ctx2d: CanvasRenderingContext2D = ctx;
-
-    let rafId = 0;
-    let width = 0;
-    let height = 0;
-    let dpr = 1;
-
-    const prefersReduced =
-      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
-    const isLight = document.documentElement.getAttribute("data-theme") === "light";
-
-    const heroEl = canvasEl.closest(".hero") as HTMLElement | null;
-    let pointerX = 0;
-    let pointerY = 0;
-    let pointerActive = false;
-    let pointerTx = 0;
-    let pointerTy = 0;
-
-    function lerp(a: number, b: number, t: number) {
-      return a + (b - a) * t;
-    }
-
-    const palette: Array<[number, number, number]> = isLight
-      ? [
-          [60, 100, 200],
-          [100, 150, 255],
-          [200, 220, 255],
-        ]
-      : [
-          [20, 40, 100],
-          [50, 90, 200],
-          [100, 160, 255],
-          [180, 210, 255],
-          [0, 50, 150],
-        ];
-
-    function paletteAt(t: number) {
-      const tt = ((t % 1) + 1) % 1;
-      const scaled = tt * (palette.length - 1);
-      const i = Math.floor(scaled);
-      const f = scaled - i;
-      const a = palette[i];
-      const b = palette[Math.min(i + 1, palette.length - 1)];
-      return [
-        Math.round(lerp(a[0], b[0], f)),
-        Math.round(lerp(a[1], b[1], f)),
-        Math.round(lerp(a[2], b[2], f)),
-      ] as [number, number, number];
-    }
-
-    function resize() {
-      const rect = canvasEl.getBoundingClientRect();
-      dpr = Math.min(2, window.devicePixelRatio || 1);
-      width = Math.max(1, Math.floor(rect.width));
-      height = Math.max(1, Math.floor(rect.height));
-      canvasEl.width = Math.floor(width * dpr);
-      canvasEl.height = Math.floor(height * dpr);
-      ctx2d.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    resize();
-
-    const minDim = () => Math.min(width, height);
-    const cx = () => width * 0.75;
-    const cy = () => height * 0.5;
-
-    type Dot = {
-      baseAngle: number;
-      dist: number;
-      size: number;
-      speed: number;
-      offset: number;
-    };
-
-    const dotCount = Math.round(
-      Math.max(800, Math.min(2000, (width * height) / 1000))
-    );
-    const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-
-    const dots: Dot[] = Array.from({ length: dotCount }, (_, i) => {
-      const distIdx = i / (dotCount - 1);
-      const dist = Math.sqrt(distIdx);
-      const angle = i * goldenAngle;
-
-      const size = 2.0 + Math.random() * 3.0;
-      const speed = 0.8 + Math.random() * 0.6;
-      const offset = Math.random() * Math.PI * 2;
-
-      return { baseAngle: angle, dist, size, speed, offset };
-    });
-
-    function onPointerMove(e: PointerEvent) {
-      if (!heroEl) return;
-      const rect = heroEl.getBoundingClientRect();
-      const nx = (e.clientX - rect.left) / Math.max(1, rect.width);
-      const ny = (e.clientY - rect.top) / Math.max(1, rect.height);
-      pointerX = (nx - 0.75) * 3;
-      pointerY = (ny - 0.5) * 3;
-      pointerActive = true;
-    }
-
-    function onPointerLeave() {
-      pointerActive = false;
-    }
-
-    if (!prefersReduced && heroEl) {
-      heroEl.addEventListener("pointermove", onPointerMove, { passive: true });
-      heroEl.addEventListener("pointerleave", onPointerLeave, { passive: true });
-    }
-
-    const start = performance.now();
-    let isVisible = true;
-
-    function frame(now: number) {
-      if (!isVisible && rafId) {
-         return;
-      }
-
-      const t = (now - start) / 1000;
-      ctx2d.clearRect(0, 0, width, height);
-
-      const md = minDim();
-      const centerX = cx();
-      const centerY = cy();
-
-      if (!prefersReduced) {
-        const targetX = pointerActive ? pointerX : 0;
-        const targetY = pointerActive ? pointerY : 0;
-        pointerTx += (targetX - pointerTx) * 0.04;
-        pointerTy += (targetY - pointerTy) * 0.04;
-      } else {
-        pointerTx = 0;
-        pointerTy = 0;
-      }
-
-      ctx2d.globalCompositeOperation = isLight ? "multiply" : "screen";
-
-      const maxR = md * 1.5;
-
-      for (let i = 0; i < dots.length; i++) {
-        const dot = dots[i];
-
-        const r = dot.dist * maxR;
-
-        const wavePhase = t * 1.2 - dot.dist * 8.0 + dot.offset * 0.1;
-        const wave = Math.sin(wavePhase); // -1..1
-
-        const depth = 0.2 + 0.8 * dot.dist;
-        const px = pointerTx * md * 0.05 * depth;
-        const py = pointerTy * md * 0.05 * depth;
-
-        const x = centerX + Math.cos(dot.baseAngle) * r + px;
-        const y = centerY + Math.sin(dot.baseAngle) * r + py;
-
-        const s = dot.size * (0.6 + 0.4 * wave);
-
-        const alphaWave = Math.sin(wavePhase + Math.PI * 0.2);
-        const aBase = isLight ? 0.6 : 0.9;
-        const a = aBase * (0.6 + 0.4 * alphaWave);
-
-        if (a <= 0.01 || s <= 0.01) continue;
-
-        const cT = (dot.dist * 0.6 - t * 0.05) % 1;
-        const [R, G, B] = paletteAt(cT);
-
-        // Optimization: Use fillRect for small dots, arc is slow
-        ctx2d.fillStyle = `rgba(${R}, ${G}, ${B}, ${a})`;
-        ctx2d.beginPath();
-        ctx2d.arc(x, y, s, 0, Math.PI * 2);
-        ctx2d.fill();
-      }
-
-      rafId = requestAnimationFrame(frame);
-    }
-
-    const observer = new IntersectionObserver(([entry]) => {
-      isVisible = entry.isIntersecting;
-      if (isVisible) {
-        if (!rafId) frame(performance.now());
-      } else {
-        if (rafId) {
-          cancelAnimationFrame(rafId);
-          rafId = 0;
-        }
-      }
-    });
-    observer.observe(canvasEl);
-
-    window.addEventListener("resize", resize, { passive: true });
-    return () => {
-      window.removeEventListener("resize", resize);
-      observer.disconnect();
-      if (!prefersReduced && heroEl) {
-        heroEl.removeEventListener("pointermove", onPointerMove);
-        heroEl.removeEventListener("pointerleave", onPointerLeave);
-      }
-      cancelAnimationFrame(rafId);
-    };
-  }, [theme]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -382,11 +173,28 @@ function HomePage() {
       <div className="cursor"></div>
       <div className="cursor-follower"></div>
 
-      <MainHeader isScrolled={isScrolled} navLinks={navLinks} showPrompt />
+      <MainHeader isScrolled={isScrolled} navLinks={navLinks} />
 
       <main>
         <section className="hero">
-          <canvas ref={heroParticlesRef} className="hero-particles" aria-hidden="true" />
+          <DotField
+            className="hero-dot-field"
+            dotRadius={2.5}
+            dotSpacing={14}
+            bulgeStrength={150}
+            glowRadius={290}
+            sparkle={false}
+            waveAmplitude={0}
+            cursorRadius={250}
+            cursorForce={0.46}
+            bulgeOnly
+            gradientFrom="#ffffff"
+            gradientTo="#ffffff"
+            glowColor="#120F17"
+            exclusionSelector=".hero-title"
+            exclusionStrength={210}
+            exclusionPadding={70}
+          />
           <div className="container hero-content">
             <h1 className="hero-title">
               <HeroTitle />

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { FormEvent, MouseEvent } from "react";
+import type { MouseEvent } from "react";
 import { ROUTES } from "../siteRoutes";
 
 export type MainHeaderNavLink = {
@@ -12,13 +12,11 @@ export type MainHeaderNavLink = {
 type MainHeaderProps = {
   isScrolled: boolean;
   navLinks?: MainHeaderNavLink[];
-  showPrompt?: boolean;
 };
 
 export default function MainHeader({
   isScrolled,
   navLinks = [],
-  showPrompt = false,
 }: MainHeaderProps) {
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollRef = useRef(0);
@@ -48,17 +46,6 @@ export default function MainHeader({
   if (isScrolled) headerClasses.push("scrolled");
   if (isHidden) headerClasses.push("is-hidden");
 
-  const handlePromptSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const prompt = String(formData.get("prompt") ?? "").trim();
-    const url = prompt
-      ? `https://chat.synvexai.com/?q=${encodeURIComponent(prompt)}`
-      : "https://chat.synvexai.com";
-
-    window.location.href = url;
-  };
-
   return (
     <header id="main-header" className={headerClasses.join(" ")}>
       <div className="container">
@@ -87,18 +74,6 @@ export default function MainHeader({
               ))}
             </ul>
           </nav>
-
-          {showPrompt && (
-            <form className="header-prompt-form" onSubmit={handlePromptSubmit}>
-              <input
-                type="text"
-                name="prompt"
-                placeholder="Спроси ReMind"
-                aria-label="Спроси ReMind"
-              />
-              <button type="submit">Спросить</button>
-            </form>
-          )}
         </div>
       </div>
     </header>
